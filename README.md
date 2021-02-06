@@ -4,10 +4,8 @@
 TBD
 
 ## About the project
-Visit and take care of one of ten virtual pets as they help you reach your faily goals.
-Each day you will be visited by a new pet, take care of them by feeding and playing. To 
-feed, achieve a certain amount of steps to get food for your pet and increase the hunger. Play with your pet by
-selecting the play button, which will increase the happiness mete. Be careful not to let your happiness or hunger meter get too low, or your pet will get sick! Remember, all pets are asleep from 11pm-7am!
+Visit and take care of one of ten virtual pets as they help you reach your daily goals.
+Each day you will be visited by a new pet, take care of them by feeding and playing and making sure their hunger and happiness meters are satisfied. To feed, achieve a certain amount of steps to get food for your pet and increase the hunger meter. Play with your pet by selecting the play button, which will increase the happiness mete. Be careful not to let your happiness or hunger meter get too low, or your pet will get sick! Remember, pets get tired too and are asleep from 11pm-7am!
 
 
 ## Built with

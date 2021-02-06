@@ -42,6 +42,10 @@ function initialSetUp(){
   }else{
     switchTo(defaultAnimation)
   }
+  var json_object = loadData({"hunger": 0, "happy": 10})
+  hunger = json_object.hunger
+  happy = json_object.happy
+  console.log(hunger)
   calculateHungerMeter(hunger)
   calculateHappyMeter(happy)
 }
@@ -84,6 +88,7 @@ function decrementHappy(){
     happy = happy - 1
     calculateHappyMeter(happy)
   }
+  saveData(hunger, happy)
 }
 
 //increments the happiness meter
@@ -99,6 +104,7 @@ function incrementHappy(){
     happy = happy + 1
     calculateHappyMeter(happy)
   }
+  saveData(hunger, happy)
 }
 
 //decrements a pets hunger
@@ -114,6 +120,7 @@ function decrementHunger(){
     hunger = hunger - 1
     calculateHungerMeter(hunger)
   }
+  saveData(hunger, happy)
 }
 
 //increments the pets hunger 
@@ -129,6 +136,7 @@ function incrementHunger(){
     hunger = hunger + 1
     calculateHungerMeter(hunger)
   }
+  saveData(hunger, happy)
 }
 
 //switches to play animation on play button click and increments happiness meter
@@ -175,9 +183,10 @@ clock.ontick = (evt) => {
     }
   }*/
 
-/*function saveData(hungerMeter){
+function saveData(hunger, happy){
   let json_data = {
-    "hungerMeter": hungerMeter.width,
+    "hunger": hunger,
+    "happy": happy
   };
 
   fs.writeFileSync("json.txt", json_data, "json");
@@ -187,12 +196,12 @@ function loadData(defaults){
   try{
     let json_object  = fs.readFileSync("json.txt", "json");
   } catch(e){
+    console.log('creating')
     let json_object = defaults
-    saveData(json_object.hungerMeter)
+    fs.writeFileSync("json.txt", json_object, "json");
   }
-  console.log(json_object.hungerMeter)
-  return json_object.hungerMeter
-}*/
+  return json_object
+}
 
 initialSetUp()
 //need to check time ever 5 minutes?

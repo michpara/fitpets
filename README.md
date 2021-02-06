@@ -16,7 +16,9 @@ TBD
 TBD
 
 ## Pets!
-TBD
+
+### Bamboo
+![](gifs/panda.gif)
 
 ## Developers
 Michelle Paradis, Rishaad Quaiser, Sydney Morrow

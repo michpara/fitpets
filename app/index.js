@@ -2,6 +2,8 @@ import clock from "clock";
 import document from "document";
 import { me as device } from "device";
 import { today } from "user-activity";
+import { me } from "appbit";
+
 
 //clock tick events only happen every hour
 clock.granularity = "hours";
@@ -27,47 +29,28 @@ const feed = document.getElementById("feed");
 const play = document.getElementById("play");
 
 //food amount
-let foodvalue = document.getElementById("feed");
-var foodcount = 0;
-
+var food = 0;
 
 //step count
-var stepcount = document.getElementById("stepcount")
-let steps = today.activity.steps;
+let steps = today.adjusted.steps;
 console.log(steps);
 
 //increase foodvalue based off of number of steps
-function upFoodValue()
-{
-if(appbit.permissions.granted("access_activity"))
-  {
-if(steps%5 == 0)
-  {
-    foodcount++;
+function upFoodValue(){
+  if(me.permissions.granted("access_activity")){
+    food = food + Math.floor(steps/250)
+    console.log(food)
   }
-  }
-foodvalue.text = "FEED: " +foodcount;
+  feed.text = "FEED: " + food;
 }
 
-function displaySteps()
-{
-  stepcount.text = steps;
-}
 //decrease foodamount by pressing FEED button
-function downFoodValue()
-{
- if(foodcount > 0)
-  {     
-  foodcount--;
-  foodvalue.text = "FEED: " +foodcount;
+function downFoodValue(){
+  if(food > 0){     
+    food = food - 1;
+    feed.text = "FEED: " +food;
   }
-  else
-   {
-      return;
-   }
 }
-
-
 
 //initial set up
 function initialSetUp(){
@@ -165,15 +148,10 @@ play.addEventListener("click", (evt) => {
 //switches to feed animation on feed button click and increments hunger meter
 feed.addEventListener("click", (evt) => {
   //switchToFeed()
-  if(foodcount>0)
-  {
-  incrementHunger()
-  downFoodValue()
+  if(food>0){
+    incrementHunger()
+    downFoodValue()
   }
-  else
-    {
-      return;
-    }
   //setTimeaout(switchToDefault, 4000)
 })
 

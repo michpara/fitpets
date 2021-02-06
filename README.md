@@ -17,32 +17,35 @@ TBD
 
 ## Pets!
 
-### Bamboo
-![](gifs/panda.gif)
+### Mochi
+![](gifs/Default/mochi.gif)
 
 ### Maple
-![](gifs/beaver.gif)
+![](gifs/Default/maple.gif)
 
 ### Drago
-![](gifs/dragon.gif)
+![](gifs/Default/drago.gif)
 
 ### Oscar
-![](gifs/otter.gif)
+![](gifs/Default/otto.gif)
 
-### Skipper
-![](gifs/penguin.gif)
+### Skipp
+![](gifs/Default/seal.gif)
 
-### Shelldon
-![](gifs/turtle.gif)
+### Chad
+![](gifs/Default/turtle.gif)
 
 ### Fiona
-![](gifs/Fox.gif)
+![](gifs/Default/fiona.gif)
 
-### Blubby
-![](gifs/seal.gif)
+### Blub
+![](gifs/Default/blubb.gif)
 
 ### Spike
-![](gifs/bat.gif)
+![](gifs/Default/shade.gif)
+
+### Bonzo
+![](gifs/Default/bonzo.gif)
 
 ## Developers
 Michelle Paradis, Rishaad Quaiser, Sydney Morrow

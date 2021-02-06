@@ -8,6 +8,9 @@
   
   <use id="defaultAnimation" href="#frames"/>
   <use id="playAnimation" href="#frames_play" />
+  <use id="eatAnimation" href="#frames_eat"/>
+  <use id="sickAnimation" href="#frames_sick" />
+  <use id="sleepAnimation" href="#frames_sleep" />
   
   <use id="feed" href="#text-button" class="text-button bottom left secondary application-fill" />
   <use id="play" href="#text-button" class="text-button bottom right application-fill" />

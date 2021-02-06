@@ -1,0 +1,21 @@
+<svg>
+  <defs>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="import" href="/mnt/sysassets/system_widget.defs" />
+    <link rel="import" href="/mnt/sysassets/widgets/text_button.defs" />
+    <!-- make sure animations aren't hardcoded, depends on pet -->
+    <symbol id="frames" href="#sprite-image">
+      <animate id="anim" attributeName="value" begin="enable"
+          from="0" to="1" dur="0.4"
+          repeatDur="0.8" repeatCount="indefinite" />
+      <image href="default/beaver_0.png" width="150" height="150" x="25%" y="20%"/>
+    </symbol>
+    
+    <symbol id="frames_play" href="#sprite-image" fill="black">
+      <animate id="anim" attributeName="value" begin="enable"
+          from="0" to="1" dur="0.4"
+          repeatDur="0.8" repeatCount="5" />
+      <image href="play/beaver_play_0.png" width="150" height="150" x="25%" y="20%"/>
+    </symbol>
+  </defs>
+</svg>

@@ -29,6 +29,9 @@ const maxWidth = device.screen.width * 0.4;
 var happyMeter = document.getElementById('happyMeter');
 var happy;
 
+  let today = new Date();
+  let hour = today.getHours();
+  
 //hunger info
 var hungerMeter = document.getElementById("hungerMeter");
 var hunger;
@@ -40,29 +43,37 @@ const play = document.getElementById("play");
 //the amount of food the user has
 var food;
 
+var lastLogin;
+
 //total steps the user took today
-let totalSteps = 1000; //placeholder for testing 
+let totalSteps = 4000; //placeholder for testing 
 // let totalSteps = today.adjusted.steps
 
 //initial set up
 function initialSetUp(){
-  
+
   //get the current hour
-  let today = new Date();
-  let hour = today.getHours();
-  
+
   //load data if there's a save, use defaults if not
-  var json_object = loadData({"hunger": 0, "happy": 10, "food": 0, "steps": 0});
+  var json_object = loadData({"hunger": 0, "happy": 10, "food": 0, "steps": 0, "lastLogin": hour});
   
   //assign save data to variables
   hunger = json_object.hunger;
   happy = json_object.happy;
   food = json_object.food;
   currentSteps = totalSteps - json_object.steps;
+  lastLogin = json_object.hour
   
+  var timeFrame = hour - lastLogin
   //calculate and display the hunger and happy meters
   calculateHungerMeter(hunger);
   calculateHappyMeter(happy);
+  
+  for(var i = 0; i<timeFrame; i++){
+    decrementHappy()
+    incrementHunger()
+  }
+
   
   //if the user opens the app between 11pm and 7am, play sleep animation
   if(hour >= 23 && hour < 7){
@@ -136,7 +147,7 @@ function decrementHappy(){
     happy = happy - 1;
     calculateHappyMeter(happy);
   }
-  saveData(hunger, happy, food, totalSteps);
+  saveData(hunger, happy, food, totalSteps, hour);
 }
 
 //increments the happiness meter
@@ -150,7 +161,7 @@ function incrementHappy(){
     happy = happy + 1;
     calculateHappyMeter(happy);
   }
-  saveData(hunger, happy, food, totalSteps);
+  saveData(hunger, happy, food, totalSteps, hour);
 }
 
 //decrements a pets hunger
@@ -164,7 +175,7 @@ function decrementHunger(){
       hunger = hunger - 1;
       calculateHungerMeter(hunger);
     }
-  saveData(hunger, happy, food, totalSteps);
+  saveData(hunger, happy, food, totalSteps, hour);
 }
 
 //increments the pets hunger 
@@ -178,7 +189,7 @@ function incrementHunger(){
     hunger = hunger + 1;
     calculateHungerMeter(hunger);
   }
-  saveData(hunger, happy, food, totalSteps);
+  saveData(hunger, happy, food, totalSteps, hour);
 }
 
 //switches to play animation on play button click and increments happiness meter
@@ -212,16 +223,17 @@ feed.addEventListener("click", (evt) => {
       switchTo(defaultAnimation)
     }, 4000);
   }
-  saveData(hunger, happy, food, totalSteps);
+  saveData(hunger, happy, food, totalSteps, hour);
 });
 
 //save data
-function saveData(hunger, happy, food, steps){
+function saveData(hunger, happy, food, steps, hour){
   let json_data = {
     "hunger": hunger,
     "happy": happy,
     "food": food,
-    "steps": steps
+    "steps": steps,
+    "lastLogin": hour
   };
 
   fs.writeFileSync("json.txt", json_data, "json");
@@ -237,8 +249,6 @@ function loadData(defaults){
   }
   return json_object
 }
-
-//TO DO: EVERY HOUR DECREMENT HUNGER AND HAPPY
 
 //call when app opens
 initialSetUp()

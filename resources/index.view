@@ -1,10 +1,7 @@
 <svg>
   <!-- make sure this name isn't hardcoded, should depend on pet -->
   <text fill="white" font-family="System-Light" x="11%" y="15%" >Maple</text>
-  <text id = "stepcount" fill="white" font-family="System-Light" x="11%" y="69%" >Steps:-----</text>
-  
-  
-  
+    
   <rect x="40%" y="7%" width="40%" height="3%" fill="red" opacity="0.3" />
   <rect x="40%" y="13%" width="40%" height="3%" fill="green" opacity="0.3"/>
   <rect id="hungerMeter" x="40%" y="7%" height="3%" fill="red" />

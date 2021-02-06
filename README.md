@@ -35,6 +35,15 @@ TBD
 ### Shelldon
 ![](gifs/turtle.gif)
 
+### Fiona
+![](gifs/Fox.gif)
+
+### Blubby
+![](gifs/seal.gif)
+
+### Spike
+![](gifs/bat.gif)
+
 ## Developers
 Michelle Paradis, Rishaad Quaiser, Sydney Morrow
 

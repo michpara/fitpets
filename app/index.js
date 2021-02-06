@@ -2,7 +2,6 @@ import clock from "clock";
 import document from "document";
 import { me as device } from "device";
 import { today } from "user-activity";
-import * as fs from "fs";
 
 //clock tick events only happen every hour
 clock.granularity = "hours";
@@ -27,12 +26,59 @@ var hungerWidth = device.screen.width * 0.4;
 const feed = document.getElementById("feed");
 const play = document.getElementById("play");
 
+//food amount
+let foodvalue = document.getElementById("feed");
+var foodcount = 0;
+
+
+//step count
+var stepcount = document.getElementById("stepcount")
+let steps = today.activity.steps;
+console.log(steps);
+
+//increase foodvalue based off of number of steps
+function upFoodValue()
+{
+if(appbit.permissions.granted("access_activity"))
+  {
+if(steps%5 == 0)
+  {
+    foodcount++;
+  }
+  }
+foodvalue.text = "FEED: " +foodcount;
+}
+
+function displaySteps()
+{
+  stepcount.text = steps;
+}
+//decrease foodamount by pressing FEED button
+function downFoodValue()
+{
+ if(foodcount > 0)
+  {     
+  foodcount--;
+  foodvalue.text = "FEED: " +foodcount;
+  }
+  else
+   {
+      return;
+   }
+}
+
+
+
 //initial set up
 function initialSetUp(){
   defaultAnimation.animate("enable");
   playAnimation.style.display = "none";
+  
   hungerMeter.width = hungerWidth;
   happyMeter.width = happyWidth;
+  upFoodValue();
+  
+  
 }
 
 //switches the animation to the default one
@@ -81,8 +127,6 @@ function incrementHappy(){
   //increment the happiness meter by 3%
   happyWidth = ((happyWidth / device.screen.width) + 0.03) * device.screen.width;
   happyMeter.width = happyWidth
-  
-
 }
 
 //decrements the hunger meter
@@ -94,7 +138,6 @@ function decrementHunger(){
      hungerWidth = ((hungerWidth/ device.screen.width) - 0.03) * device.screen.width;
      hungerMeter.width = hungerWidth
   }
-
 }
 
 //increments the hunger meter
@@ -110,24 +153,28 @@ function incrementHunger(){
   //increment the hunger meter by 3%
   hungerWidth = ((hungerWidth / device.screen.width) + 0.03) * device.screen.width;
   hungerMeter.width = hungerWidth
-
 }
 
 //switches to play animation on play button click and increments happiness meter
 play.addEventListener("click", (evt) => {
   switchToPlay()
   incrementHappy()
-
   setTimeout(switchToDefault, 4000)
-
 })
 
 //switches to feed animation on feed button click and increments hunger meter
 feed.addEventListener("click", (evt) => {
   //switchToFeed()
+  if(foodcount>0)
+  {
   incrementHunger()
-
-  setTimeout(switchToDefault, 4000)
+  downFoodValue()
+  }
+  else
+    {
+      return;
+    }
+  //setTimeaout(switchToDefault, 4000)
 })
 
 //performs the following every hour
@@ -139,7 +186,7 @@ clock.ontick = (evt) => {
       return;
     }
     //disabled feed and play buttons at 11pm and starts playing sleep animation
-    if (hours <= 21 ){ 
+    if (hours == 21){ 
       feed.disable()
       play.disable()
       //play sleep
@@ -154,6 +201,10 @@ clock.ontick = (evt) => {
     if (hours >= 7 && hours < 21){ 
       decrementHunger()
       decrementHappy()
+      while(hours>= 7 && hours <21)
+        {
+          displaySteps()
+        }
     }
   }
 initialSetUp()

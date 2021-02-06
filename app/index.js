@@ -2,7 +2,8 @@ import clock from "clock";
 import document from "document";
 import { me as device } from "device";
 import { today } from "user-activity";
-import * as fs from "fs";
+import { me } from "appbit";
+
 
 //clock tick events happen every hour
 clock.granularity = "minutes";
@@ -33,8 +34,33 @@ var hunger = 0;
 const feed = document.getElementById("feed");
 const play = document.getElementById("play");
 
+//food amount
+var food = 0;
+
+//step count
+let steps = today.adjusted.steps;
+console.log(steps);
+
+//increase foodvalue based off of number of steps
+function upFoodValue(){
+  if(me.permissions.granted("access_activity")){
+    food = food + Math.floor(steps/250)
+    console.log(food)
+  }
+  feed.text = "FEED: " + food;
+}
+
+//decrease foodamount by pressing FEED button
+function downFoodValue(){
+  if(food > 0){     
+    food = food - 1;
+    feed.text = "FEED: " +food;
+  }
+}
+
 //initial set up
 function initialSetUp(){
+
   let today = new Date()
   let hour = today.getHours()
   if(hour >= 23 && hour < 7){
@@ -48,6 +74,7 @@ function initialSetUp(){
   console.log(hunger)
   calculateHungerMeter(hunger)
   calculateHappyMeter(happy)
+  upFoodValue();
 }
 
 //calculates the length of the hunger meter
@@ -116,10 +143,6 @@ function decrementHunger(){
       switchTo(defaultAnimation)
     }, 4000)
   }
-  else if (hunger > 0){
-    hunger = hunger - 1
-    calculateHungerMeter(hunger)
-  }
   saveData(hunger, happy)
 }
 
@@ -143,45 +166,22 @@ function incrementHunger(){
 play.addEventListener("click", (evt) => {
   switchTo(playAnimation)
   incrementHappy()
-  setTimeout(function() {
-    switchTo(defaultAnimation)
-  }, 4000)
+  setTimeout(switchToDefault, 4000)
 })
 
 //switches to feed animation on feed button click and increments hunger meter
 feed.addEventListener("click", (evt) => {
-  switchTo(eatAnimation)
-  decrementHunger()
-  setTimeout(function() {
+  //switchToFeed()
+  if(food>0){
+    decrementHunger()
+    switchTo(eatAnimation)
+    downFoodValue()
+    setTimeout(function() {
     switchTo(defaultAnimation)
   }, 4000)
+  }
 })
 
-
-//performs the following every hour
-/*
-clock.ontick = (evt) => {
-  console.log(hours)
-  let today = evt.date;
-  let hours = today.getHours();
-    //disabled feed and play buttons at 11pm and starts playing sleep animation
-    if (hours >= 21 and hours < 7){ 
-      feed.disable()
-      play.disable()
-      switchTo(sleepAnimation)
-    }
-    //between 7am and 11pm, decrement hunger and happiness every hour and enable buttons again
-    if (hours >= 7 && hours < 21){
-      feed.disable()
-      play.disable()
-      switchTo(sleepAnimation)
-     feed.enable()
-      play.enable()
-      switchTo(defaultAnimation)
-      //decrementHunger()
-      //decrementHappy()
-    }
-  }*/
 
 function saveData(hunger, happy){
   let json_data = {

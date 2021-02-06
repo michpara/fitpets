@@ -14,3 +14,12 @@ TBD
 
 ## Project Demo
 TBD
+
+## Pets!
+TBD
+
+## Developers
+Michelle Paradis, Rishaad Quaiser, Sydney Morrow
+
+## Artist/Designer
+Alysa Levy

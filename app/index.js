@@ -41,15 +41,17 @@ const play = document.getElementById("play");
 var food;
 
 //total steps the user took today
-let totalSteps = 1000; //placeholder for testing 
+let totalSteps = 90000; //placeholder for testing 
 // let totalSteps = today.adjusted.steps
+
+let today = new Date();
+let hour = today.getHours()
 
 //initial set up
 function initialSetUp(){
   
   //get the current hour
-  let today = new Date();
-  let hour = today.getHours();
+ ;
   
   //load data if there's a save, use defaults if not
   var json_object = loadData({"hunger": 0, "happy": 10, "food": 0, "steps": 0});
@@ -59,6 +61,7 @@ function initialSetUp(){
   happy = json_object.happy;
   food = json_object.food;
   currentSteps = totalSteps - json_object.steps;
+
   
   //calculate and display the hunger and happy meters
   calculateHungerMeter(hunger);
@@ -67,10 +70,12 @@ function initialSetUp(){
   //if the user opens the app between 11pm and 7am, play sleep animation
   if(hour >= 23 && hour < 7){
     //TODO: IF BETWEEN 11PM AND 7PM WHEN USER ON APP, PLAY SLEEP ANIMATION
-    switchTo(sleepAnimation); //DISABLE FEED AND PLAY
-    feed.disable = true;
-    play.disable = true;
-  }else if(hunger == 10 || happy == 0){ //if the user opens the app and the hunger/happy meters are empty, play sick animation
+    switchTo(sleepAnimation); //DISABLE FEED AND PLAY : DONE IN THE addEventListener METHOD FOR BOTH FEED AND PLAY
+    
+   
+  }else
+    {
+    if (hunger == 10 || happy == 0){ //if the user opens the app and the hunger/happy meters are empty, play sick animation
     switchTo(sickAnimation);
     feed.disable = false;
     play.disable = false;
@@ -79,7 +84,9 @@ function initialSetUp(){
     feed.disable = false;
     play.disable = false;
   }
-  increaseFood(); //calculate how much food the user has
+   //calculate how much food the user has
+    }
+  increaseFood();
 }
 
 //increases the amount of food the user has
@@ -183,6 +190,11 @@ function incrementHunger(){
 
 //switches to play animation on play button click and increments happiness meter
 play.addEventListener("click", (evt) => {
+  if(hour > 23 && hour <= 7){
+     return;
+  }
+  else
+  {
   switchTo(playAnimation);
   incrementHappy();
   if(hunger == 10){
@@ -194,19 +206,23 @@ play.addEventListener("click", (evt) => {
       switchTo(defaultAnimation);
     }, 4000);
   }
+  }
 });
 
 //switches to feed animation on feed button click and increments hunger meter
 feed.addEventListener("click", (evt) => {
-   if(food > 0 && hunger > 0){
+  
+  if(hour > 23 && hour <= 7){
+    return;
+  } else if(food > 0 && hunger > 0){
       decrementHunger();
       switchTo(eatAnimation);
       decreaseFood();
+  }
   if(happy == 0){
       setTimeout(function(){
         switchTo(sickAnimation)
       }, 4000);
-  }
   }else{
     setTimeout(function(){
       switchTo(defaultAnimation)

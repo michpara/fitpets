@@ -3,22 +3,25 @@
     "@fitbit/sdk": "~5.0.0"
   },
   "fitbit": {
-    "appUUID": "62073a64-a572-49f7-8a86-299a096e2aeb",
+    "appUUID": "7fc34f02-f470-4e6b-82fe-e3be04544ca8",
     "appType": "app",
-    "appDisplayName": "PetBit",
+    "appDisplayName": "Virtual Pet",
     "iconFile": "resources/icon.png",
-    "wipeColor": "#607d8b",
+    "wipeColor": "#f44336",
     "requestedPermissions": [
       "access_activity",
       "run_background"
     ],
     "buildTargets": [
-      "atlas",
-      "vulcan"
+      "vulcan",
+      "atlas"
     ],
     "i18n": {
       "en-US": {
-        "name": "PetBit"
+        "name": "Virtual Pet"
+      },
+      "fr-FR": {
+        "name": "Animal virtuel"
       }
     },
     "defaultLanguage": "en-US"

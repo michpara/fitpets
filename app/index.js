@@ -2,209 +2,195 @@ import clock from "clock";
 import document from "document";
 import { me as device } from "device";
 import { today } from "user-activity";
-import * as fs from "fs";
+import * as util from "../../../common/utils.js";
 
-//clock tick events happen every hour
-clock.granularity = "minutes";
 
-//store device width
+
+//clock tick events only happen every hour
+clock.granularity = "hours";
+
+//store device width and height
 const deviceWidth = device.screen.width;
+const deviceHeight = device.screen.height;
 
 //pet animations
 const defaultAnimation = document.getElementById("defaultAnimation");
 const playAnimation = document.getElementById("playAnimation");
-const sleepAnimation = document.getElementById("sleepAnimation");
-const eatAnimation = document.getElementById("eatAnimation");
-const sickAnimation = document.getElementById("sickAnimation");
 
-//helper variables
-const animations = [defaultAnimation, playAnimation, sleepAnimation, eatAnimation, sickAnimation]
-const maxWidth = device.screen.width * 0.4;
+//happy meter info
+const happyMeter = document.getElementById('happyMeter')
+var happyWidth = device.screen.width * 0.4;
 
-//happy info
-var happyMeter = document.getElementById('happyMeter')
-var happy = 10;
-
-//hunger info
-var hungerMeter = document.getElementById("hungerMeter");
-var hunger = 0;
+//hunger meter info
+const hungerMeter = document.getElementById("hungerMeter");
+var hungerWidth = device.screen.width * 0.4;
 
 //references feed and play buttons
 const feed = document.getElementById("feed");
 const play = document.getElementById("play");
 
+var penguin = {name: "Skipper", age:0, animation: "penguin_0.png", time:1}
+var otter = {name: "Oscar", age:0, animation: "otter_0.png", time:3}
+var panda = {name: "Bamboo", age:0, animation: "panda_0.png", time:3, time2:1}
+var beaver = {name: "Maple", age:0, animation: "beaver_0.png", time:1, time2:1}
+var dragon = {name: "Drago", age:0, animation: "dragon_0.png", time:1}
+var monkey = {name: "Bonzo", age:0, animation: "monkey_0.png", time:3}
+var turtle = {name: "Shelldon", age:0, animation: "turtle_0.png", time:1}
+var fox = {name: "Fiona", age:0, animation: "fox_0.png", time:3}
+var seal = {name: "Blubby", age:0, animation: "seal_0.png", time:1}
+var bat = {name: "Shade", age:0, animation: "bat_0.png", time:1}
+
+
+var possiblePets = [panda,beaver,fox,bat,dragon,turtle,seal,penguin,otter,monkey];
+
+
+function createPet(){
+  var rand = Math.random()
+  var ln = possiblePets.length
+  var fl = Math.floor(rand*ln)
+ console.log(rand)
+ console.log(fl)
+ console.log(ln)
+  var pet = possiblePets[Math.floor(Math.random() * possiblePets.length)];
+  let defaultImage = document.getElementById('defaultImage');
+  let playImage = document.getElementById('playImage');
+  let name = document.getElementById('petName');
+  let defaultTime = document.getElementById('anim1');
+  let playTime = document.getElementById('anim2');
+  defaultImage.href = "default/" + pet.animation
+  playImage.href = "play/play_" + pet.animation
+  name.text = pet.name
+  defaultTime.to = pet.time
+  playTime.to = pet.time2
+}
+
 //initial set up
 function initialSetUp(){
-  let today = new Date()
-  let hour = today.getHours()
-  if(hour >= 23 && hour < 7){
-    switchTo(sleepAnimation)
-  }else{
-    switchTo(defaultAnimation)
-  }
-  var json_object = loadData({"hunger": 0, "happy": 10})
-  hunger = json_object.hunger
-  happy = json_object.happy
-  console.log(hunger)
-  calculateHungerMeter(hunger)
-  calculateHappyMeter(happy)
+  
+  defaultAnimation.animate("enable");
+  playAnimation.style.display = "none";
+  
+  hungerMeter.width = hungerWidth;
+  happyMeter.width = happyWidth;
 }
 
-//calculates the length of the hunger meter
-function calculateHungerMeter(hunger){
-  var percentage = hunger/10
-  hungerMeter.width = (maxWidth - (percentage*maxWidth))
+//switches the animation to the default one
+function switchToDefault(){
+  playAnimation.animate("disable");
+  
+  playAnimation.style.display = "none";
+  
+  defaultAnimation.style.display ="inline";
+  
+  defaultAnimation.animate("enable")
 }
 
-//calculate the length of the happy meter
-function calculateHappyMeter(happy){
-  var percentage = (10-happy)/10
-  happyMeter.width = (maxWidth - (percentage*maxWidth))
-}
-
-//switches pet animations
-function switchTo(animation){
-  for(var i =0; i<animations.length; i++){
-    if(animations[i].id != animation.id){
-       animations[i].animate("disable")
-       animations[i].style.display = "none"
-    }else{
-      console.log(animations[i].id)
-      animations[i].style.display = "inline"
-      animations[i].animate("enable")
-    }
-  }
+//switches the animation to the play one
+function switchToPlay(){
+  defaultAnimation.animate("disable")
+  
+  defaultAnimation.style.display ="none";
+  
+  playAnimation.style.display = "inline";
+  
+  playAnimation.animate("enable");
 }
 
 //decrements the happiness meter
 function decrementHappy(){
-  if(happy == 1){
-    happy = happy - 1
-    calculateHappyMeter(happy)
-    setTimeout(function() {
-      switchTo(sickAnimation)
-    }, 4000)
-  }else if(happy > 0){
-    happy = happy - 1
-    calculateHappyMeter(happy)
+  //if the happiness meter has reached zero, play sick animation and stop decrementing
+  if(happyWidth/device.screen.width == 0){
+    return; //play sad animation
+  }else{ //otherwise, decrement the hunger meter by 3%
+     happyWidth = ((happyWidth/ device.screen.width) - 0.03) * device.screen.width;
+     happyMeter.width = happyWidth
   }
-  saveData(hunger, happy)
 }
 
 //increments the happiness meter
 function incrementHappy(){
-  if(happy == 0){
-    happy = happy + 1
-    calculateHappyMeter(happy)
-    setTimeout(function() {
-      switchTo(defaultAnimation)
-    }, 4000)
+  //if the happiness meter is at zero, stop playing the sick animation
+  if(happyWidth/device.screen.width == 0){
+    return; 
   }
-  else if(happy < 10){
-    happy = happy + 1
-    calculateHappyMeter(happy)
+  //if the happiness meter has reached its limit, do not increment it and disable feed button
+  else if(happyWidth/device.screen.width == 0.4){
+    return;
   }
-  saveData(hunger, happy)
+  //increment the happiness meter by 3%
+  happyWidth = ((happyWidth / device.screen.width) + 0.03) * device.screen.width;
+  happyMeter.width = happyWidth
 }
 
-//decrements a pets hunger
+//decrements the hunger meter
 function decrementHunger(){
-  if(hunger == 10){
-    hunger = hunger - 1
-    calculateHungerMeter(hunger)
-    setTimeout(function() {
-      switchTo(defaultAnimation)
-    }, 4000)
+  //if the hunger meter has reached zero, play sick animations
+  if(hungerWidth/device.screen.width == 0){
+    return; 
+  }else{ //otherwise, decrement the hunger meter by 3%
+     hungerWidth = ((hungerWidth/ device.screen.width) - 0.03) * device.screen.width;
+     hungerMeter.width = hungerWidth
   }
-  else if (hunger > 0){
-    hunger = hunger - 1
-    calculateHungerMeter(hunger)
-  }
-  saveData(hunger, happy)
 }
 
-//increments the pets hunger 
+//increments the hunger meter
 function incrementHunger(){
-  if(hunger == 9){
-    hunger = hunger + 1
-    calculateHungerMeter(hunger)
-    setTimeout(function() {
-      switchTo(sickAnimation)
-    }, 4000)
+  //if the hunger meter is at zero, stop playing the sick animation and stop decrementing
+  if(hungerWidth/device.screen.width == 0){
+    return; //stop playing sad animation
   }
-  else if(hunger < 10){
-    hunger = hunger + 1
-    calculateHungerMeter(hunger)
+  //if the hunger meter has reached its limit, do not increment it
+  else if(hungerWidth/device.screen.width == 0.4){
+    return;
   }
-  saveData(hunger, happy)
+  //increment the hunger meter by 3%
+  hungerWidth = ((hungerWidth / device.screen.width) + 0.03) * device.screen.width;
+  hungerMeter.width = hungerWidth
 }
 
 //switches to play animation on play button click and increments happiness meter
 play.addEventListener("click", (evt) => {
-  switchTo(playAnimation)
+  switchToPlay()
   incrementHappy()
-  setTimeout(function() {
-    switchTo(defaultAnimation)
-  }, 4000)
+  setTimeout(switchToDefault, 4000)
 })
 
 //switches to feed animation on feed button click and increments hunger meter
 feed.addEventListener("click", (evt) => {
-  switchTo(eatAnimation)
-  decrementHunger()
-  setTimeout(function() {
-    switchTo(defaultAnimation)
-  }, 4000)
+  //switchToFeed()
+  incrementHunger()
+  //setTimeaout(switchToDefault, 4000)
 })
 
-
 //performs the following every hour
-/*
 clock.ontick = (evt) => {
-  console.log(hours)
   let today = evt.date;
   let hours = today.getHours();
+    //increments the pets age everyday at midnight
+    if (hours == 24){
+      return;
+    }
     //disabled feed and play buttons at 11pm and starts playing sleep animation
-    if (hours >= 21 and hours < 7){ 
+    if (hours == 21){ 
       feed.disable()
       play.disable()
-      switchTo(sleepAnimation)
+      //play sleep
     }
-    //between 7am and 11pm, decrement hunger and happiness every hour and enable buttons again
-    if (hours >= 7 && hours < 21){
-      feed.disable()
-      play.disable()
-      switchTo(sleepAnimation)
-     feed.enable()
+    //enable feed and play buttons at 7am and stop playing the sleep animation
+    if(hours == 7){
+      feed.enable()
       play.enable()
-      switchTo(defaultAnimation)
-      //decrementHunger()
-      //decrementHappy()
+      //play default
     }
-  }*/
-
-function saveData(hunger, happy){
-  let json_data = {
-    "hunger": hunger,
-    "happy": happy
-  };
-
-  fs.writeFileSync("json.txt", json_data, "json");
-}
-
-function loadData(defaults){
-  try{
-    let json_object  = fs.readFileSync("json.txt", "json");
-  } catch(e){
-    console.log('creating')
-    let json_object = defaults
-    fs.writeFileSync("json.txt", json_object, "json");
+    //between 7am and 11pm, decrement hunger and happiness every hour
+    if (hours >= 7 && hours < 21){ 
+      decrementHunger()
+      decrementHappy()
+    }
   }
-  return json_object
-}
 
+createPet()
 initialSetUp()
-//need to check time ever 5 minutes?
-setInterval(incrementHunger, 10000)
-
-setInterval(decrementHappy, 20000)
+decrementHunger()
+decrementHunger()
+decrementHunger()

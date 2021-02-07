@@ -1,4 +1,4 @@
-.application-fill           { fill: burlywood; } /* have this color depend on pet */
+.application-fill           { fill: burlywood	; } /* have this color depend on pet */
 .foreground-fill            { fill: fb-white; }
 .background-fill            { fill: fb-black; }
 
@@ -8,4 +8,9 @@
 
 #play #text{
   text-buffer: "PLAY"
+}
+
+#petName #text{
+  text-buffer: "PLAY"
+  
 }

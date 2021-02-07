@@ -3,41 +3,40 @@
     <link rel="stylesheet" href="styles.css" />
     <link rel="import" href="/mnt/sysassets/system_widget.defs" />
     <link rel="import" href="/mnt/sysassets/widgets/text_button.defs" />
-    
     <!-- make sure animations aren't hardcoded, depends on pet -->
     <symbol id="frames" href="#sprite-image">
-      <animate id="anim" attributeName="value" begin="enable"
+      <animate id="anim1" attributeName="value" begin="enable"
           from="0" to="1" dur="0.4"
           repeatDur="0.8" repeatCount="indefinite" />
-      <image href="default/beaver_0.png" width="150" height="150" x="25%" y="20%"/>
+      <image id="defaultImage" href=" " width="150" height="150" x="25%" y="20%"/>
     </symbol>
     
     <symbol id="frames_play" href="#sprite-image" fill="black">
-      <animate id="anim" attributeName="value" begin="enable"
-          from="0" to="1" dur="0.4"
-          repeatDur="0.8" repeatCount="5" />
-      <image href="play/beaver_play_0.png" width="150" height="150" x="25%" y="20%"/>
-    </symbol>
-    
-    <symbol id="frames_sick" href="#sprite-image" fill="black">
-      <animate id="anim" attributeName="value" begin="enable"
+      <animate id="anim2" attributeName="value" begin="enable"
           from="0" to="1" dur="0.4"
           repeatDur="0.8" repeatCount="indefinite" />
-      <image href="sick/beaver_sick_0.png" width="150" height="150" x="25%" y="20%"/>
+      <image id="playImage" href="" width="150" height="150" x="25%" y="20%"/>
+    </symbol>
+    
+        <symbol id="frames_sick" href="#sprite-image" fill="black">
+      <animate id="anim3" attributeName="value" begin="enable"
+          from="0" to="1" dur="0.4"
+          repeatDur="0.8" repeatCount="indefinite" />
+      <image id="sickImage" href="" width="150" height="150" x="25%" y="20%"/>
     </symbol>
     
     <symbol id="frames_eat" href="#sprite-image" fill="black">
-      <animate id="anim" attributeName="value" begin="enable"
+      <animate id="anim4" attributeName="value" begin="enable"
           from="0" to="1" dur="0.4"
           repeatDur="0.8" repeatCount="5" />
-      <image href="eat/beaver_eat_0.png" width="150" height="150" x="25%" y="20%"/>
+      <image id="eatImage" href=" " width="150" height="150" x="25%" y="20%"/>
     </symbol>
     
     <symbol id="frames_sleep" href="#sprite-image" fill="black">
-      <animate id="anim" attributeName="value" begin="enable"
+      <animate id="anim5" attributeName="value" begin="enable"
           from="0" to="3" dur="3"
           repeatDur="4" repeatCount="indefinite" />
-      <image href="sleep/beaver_sleep_0.png" width="150" height="150" x="25%" y="20%"/>
+      <image id="sleepImage" href=" " width="150" height="150" x="25%" y="20%"/>
     </symbol>
   </defs>
 </svg>

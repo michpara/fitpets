@@ -1,4 +1,3 @@
-.application-fill           { fill: #0e2e10	; } /* have this color depend on pet */
 .foreground-fill            { fill: fb-white; }
 .background-fill            { fill: fb-black; }
 
@@ -13,4 +12,3 @@
 #petName{
   text-length: 8
 }
-

@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="styles.css" />
     <link rel="import" href="/mnt/sysassets/system_widget.defs" />
     <link rel="import" href="/mnt/sysassets/widgets/text_button.defs" />
-    <!-- make sure animations aren't hardcoded, depends on pet -->
+
     <symbol id="frames" href="#sprite-image">
       <animate id="anim1" attributeName="value" begin="enable"
           from="0" to="1" dur="0.4"

@@ -5,9 +5,9 @@
   "fitbit": {
     "appUUID": "8b344a9c-f044-4679-a0f7-863ca982df20",
     "appType": "app",
-    "appDisplayName": "FitPet",
+    "appDisplayName": "FitPets",
     "iconFile": "resources/icon.png",
-    "wipeColor": "#f44336",
+    "wipeColor": "#03a9f4",
     "requestedPermissions": [
       "access_activity"
     ],
@@ -17,7 +17,7 @@
     ],
     "i18n": {
       "en-US": {
-        "name": "FitPet"
+        "name": "FitPets"
       }
     },
     "defaultLanguage": "en-US"

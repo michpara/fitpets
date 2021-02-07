@@ -29,20 +29,20 @@ const sickAnimation = document.getElementById("sickAnimation");
 const animations = [defaultAnimation, playAnimation, sleepAnimation, eatAnimation, sickAnimation];
 const maxWidth = device.screen.width * 0.4;
 
-//references happy meter
+//references meters
 var happyMeter = document.getElementById('happyMeter');
-
-//references hunger meter
 var hungerMeter = document.getElementById("hungerMeter");
 
 //stores the total steps the user took for the day
-let totalSteps = 2000;
-//let totalSteps = today.adjusted.steps;
+var totalSteps = today.adjusted.steps;
 
 //holds the current date and time
-var today = new Date();
-var date = today.getDate();
-var hour = 12;
+
+var todaysDate = new Date();
+
+var date = todaysDate.getDate();
+var hour = todaysDate.getHours();
+
 
 //references feed and play buttons
 const feed = document.getElementById("feed");
@@ -74,9 +74,7 @@ var possiblePets = [panda, beaver, fox, bat, dragon, turtle, seal, penguin, otte
 
 //function is called everytime the app is loaded
 function initialSetUp(){
-  
-  //fs.unlinkSync("json.txt");
-  
+
   //receives save data if it exists, otherwise uses defaults
   var json_object = loadData({"hunger": 0, "happy": 10, "food": 0, "steps": 0, "lastLogin": date, "pet": createPet(), "lastHour": hour});
   
@@ -88,8 +86,9 @@ function initialSetUp(){
   lastLogin = json_object.lastLogin;
   pet = json_object.pet;
   lastHour = json_object.lastHour;
-  console.log(lastHour)
-  console.log(hour)
+  
+  //if user last opened the app when the pet was asleep, and opens it when it
+  //is now awake, make sure only the time from 8am+ is calculated 
   if(lastHour >= 0 && lastHour < 8 && hour >= 8 && hour <= 23){
     lastHour = 8;
   }
@@ -110,37 +109,33 @@ function initialSetUp(){
   calculateHappyMeter(happy);
   
   //if the user opens the app between 11pm and 7am, play sleep animation
-      console.log(hour)
-
   if(hour >= 0 && hour < 8){
     switchTo(sleepAnimation); 
-  }else if(hunger == 10 || happy == 0){ //if the user opens the app and the hunger/happy meters are empty, play sick animation
-    switchTo(sickAnimation);
+  }else {
+    //if not asleep, decrement hunger and happy meter for every hour since last open
     var timeDur = hour - lastHour;
     for(var i = 0; i<timeDur; i++){
       incrementHunger();
       decrementHappy();
     }
-  }else{
-    switchTo(defaultAnimation); //otherwise, play default animation
-    var timeDur = hour - lastHour;
-      for(var i = 0; i<timeDur; i++){
-      incrementHunger();
-      decrementHappy();
+    if(hunger == 10 || happy == 0){ //if the user opens the app and the hunger/happy meters are empty, play sick animation
+      switchTo(sickAnimation);
+    }else{
+      switchTo(defaultAnimation); //otherwise, play default animation
     }
   }
+
   increaseFood(); //calculate how much food the user has
   
-  saveData(hunger, happy, food, totalSteps, date, pet, hour);
-
+  saveData(hunger, happy, food, totalSteps, date, pet, hour); //saves data
 }
 
 //creates a new random pet
 function createPet(){
+  //random does not work unless this is here for some reason?
   var rand = Math.random();
   var ln = possiblePets.length;
   var fl = Math.floor(rand*ln);
-  //remove?
   console.log(rand);
   console.log(fl);
   console.log(ln);
@@ -157,7 +152,7 @@ function displayPet(pet){
   var eatImage = document.getElementById('eatImage');
   var sickImage = document.getElementById('sickImage');
   var sleepImage = document.getElementById('sleepImage');
-  var background = document.getElementById("background")
+  var background = document.getElementById("background");
   
   var name = document.getElementById('petName');
   var defaultTime = document.getElementById('anim1');
@@ -263,6 +258,7 @@ function incrementHappy(){
   }
   saveData(hunger, happy, food, totalSteps, date, pet, hour);
 }
+
 //decrements the hunger meter
 function decrementHunger(){
   //if hunger is full and happy is not empty, switch to default
@@ -322,17 +318,17 @@ feed.addEventListener("click", (evt) => {
         switchTo(eatAnimation);
         decreaseFood();
         setTimeout(function(){
-        switchTo(defaultAnimation)
+        switchTo(defaultAnimation);
       }, 4000);
      }
      if(happy == 0){
         setTimeout(function(){
-          switchTo(sickAnimation)
+          switchTo(sickAnimation);
         }, 4000);
      }
      else{
        setTimeout(function(){
-       switchTo(defaultAnimation)
+       switchTo(defaultAnimation);
       }, 4000);
     }
    
@@ -365,4 +361,3 @@ function loadData(defaults){
 }
 
 initialSetUp()
-

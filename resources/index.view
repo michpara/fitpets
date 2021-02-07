@@ -1,20 +1,20 @@
 <svg>
-    
-     <image id="background" height="100%" width="100%" />
-    <image  height="100%" width="100%" href="icons.png"/>
+  <image id="background" height="100%" width="100%" />
+  <image  height="100%" width="100%" href="icons.png"/>
 
-  <text id="petName" fill="black" font-family="System-Bold" x="11%" y="15%" ></text>
+  <text id="petName" fill="black" font-family="System-Bold" x="11%" y="15%"></text>
    
-  <rect x="40%" y="7%" width="40%" height="3%" fill="red" opacity="0.3" />
-  <rect x="40%" y="13%" width="40%" height="3%" fill="green" opacity="0.3"/>
-  <rect id="hungerMeter" x="40%" y="7%" height="3%" fill="red" />
-  <rect id="happyMeter" x="40%" y="13%" height="3%" fill="green" />
+  <rect id="hungerEmpty" x="40%" y="7%" width="40%" height="3%" opacity="0.3" />
+  <rect id="happyEmpty"  x="40%" y="13%" width="40%" height="3%" opacity="0.3"/>>
+  <rect id="hungerMeter" x="40%" y="7%" height="3%" />
+  <rect id="happyMeter" x="40%" y="13%" height="3%" />
 
   <use id="defaultAnimation" href="#frames"/>
   <use id="playAnimation" href="#frames_play" />
   <use id="eatAnimation" href="#frames_eat"/>
   <use id="sickAnimation" href="#frames_sick" />
   <use id="sleepAnimation" href="#frames_sleep" />
+  
   <use id="feed" href="#text-button" class="text-button bottom left secondary application-fill" />
   <use id="play" href="#text-button" class="text-button bottom right application-fill" />
 </svg>

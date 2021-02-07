@@ -32,12 +32,12 @@ Fitbit Studio (SVG, CSS3, JavaScript), Pixilart, Piskel
 
 ## Try it out
 To download on computer:
-1. Create an account on FitBit Studio using your Fitbit login.
-2. Open Fitbit Studio and crete a new project of type Empty Canvas.
-3. Select the simulator tab on the top and download FitBit OS Simulator.
+1. Create an account on Fitbit Studio using your Fitbit login.
+2. Open Fitbit Studio and create a new project of type Empty Canvas.
+3. Select the simulator tab on the top and download Fitbit OS Simulator.
 4. Open Fitbit OS Simulator and go to settings. Change device type to sense.
 5. Download GitHub project.
-6. Drag and drop project contents into your Fitbit Studio Project. (Make sure the entire project is not contained in a folder. Each folder should be entered separately.)
+6. Drag and drop projects contents into your Fitbit Studio project. (Make sure the entire project is not contained in a folder. Each folder should be entered separately.)
 7. Connect your Fitbit OS Simulator and then run
 
 

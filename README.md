@@ -58,7 +58,7 @@ TBD
 <img src="gifs/Default/otto.gif" width="40%">
 
 ### Skipp
-<img src="gifs/Default/seal.gif" width="40%">
+<img src="gifs/Default/skipp.gif" width="40%">
 
 ### Chad
 <img src="gifs/Default/turtle.gif" width="40%">

@@ -188,16 +188,7 @@ function increaseFood(){
   feed.text = "FEED: " + food; //update the display
 }
 
-//decrease the amount of food the user has
-function decreaseFood(){
-  //decrement food by 1
-  if(food > 0){     
-    food = food - 1;
-    feed.text = "FEED: " + food; //update the display
-  }
 
-
-}
 
 //decrease the amount of food the user has
 function decreaseFood(){
@@ -223,18 +214,6 @@ function calculateHappyMeter(happy){
   happyMeter.width = (maxWidth - (percentage*maxWidth));
 }
 
-
-//calculates the length of the hunger meter
-function calculateHungerMeter(hunger){
-  var percentage = hunger/10;
-  hungerMeter.width = (maxWidth - (percentage*maxWidth));
-}
-
-//calculate the length of the happy meter
-function calculateHappyMeter(happy){
-  var percentage = (10-happy)/10;
-  happyMeter.width = (maxWidth - (percentage*maxWidth));
-}
 
 //switches pet animations
 function switchTo(animation){

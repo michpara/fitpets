@@ -52,25 +52,28 @@ var food;
 var lastLogin;
 var lastHour;
 
+
 //references feed and play buttons
 const feed = document.getElementById("feed");
 const play = document.getElementById("play");
 
 //pet objects
-var penguin = {name: "Skipp", animation: "penguin_0.png", background: "background/ice.png",default:1, play:1, sick:1, eat:1, sleep:3}
-var otter = {name: "Oscar", animation: "otter_0.png", default:3, play:3, sick:3, eat:3, sleep:3}
-var panda = {name: "Mochi", animation: "panda_0.png", background: "background/bamboo.png", default:3, play:1, sick:1, eat:1, sleep:3}
-var beaver = {name: "Maple", animation: "beaver_0.png", background: "background/snow.png", default:1, play:1, sick:1, eat:1, sleep:3}
-var dragon = {name: "Drago",  animation: "dragon_0.png", background: "background/cave_purple.png", default:1, play:1, sick:1, eat:1, sleep:3}
-var monkey = {name: "Bonzo", animation: "monkey_0.png", background: "background/jungle.png", default:3, play:3, sick:3, eat:3, sleep:3}
-var turtle = {name: "Chad", animation: "turtle_0.png", default:1, play:1, sick:1, eat:3, sleep:3}
-var fox = {name: "Fiona", animation: "fox_0.png", background: "background/snow.png", default:3, play:6, sick:1, eat:3, sleep:3}
-var seal = {name: "Blubb", animation: "seal_0.png",  background: "background/ice.png", default:1, play:3, sick:1, eat:1, sleep:3}
-var bat = {name: "Shade", animation: "bat_0.png", background: "background/cave.png",  default:1, play:5, sick:1,  eat:1, sleep:3}
+
+var penguin = {name: "Skipp", animation: "penguin_0.png", background: "background/ice.png", button: "#35566b", feed: "#d32f2f", play: "#e57373", default:1, play:1, sick:1, eat:1, sleep:3}
+var otter = {name: "Oscar", animation: "otter_0.png",background: "background/water.png", button: "#bbdefb", feed: "#1a237e", play: "#3f51b5",default:3, play:3, sick:3, eat:3, sleep:3}
+var panda = {name: "Mochi", animation: "panda_0.png", background: "background/bamboo.png", button: "#32521c", feed: "#e53835", play: "#ef5250",default:3, play:1, sick:1, eat:1, sleep:3}
+var beaver = {name: "Maple", animation: "beaver_0.png", background: "background/snow.png", button: "#4a332c", feed: "#691111", play: " #b71c1c", default:1, play:1, sick:1, eat:1, sleep:3}
+var dragon = {name: "Drago",  animation: "dragon_0.png", background: "background/cave_purple.png", button: "#1e1a26", feed: "#d400f9", play: "#e980fc",default:1, play:1, sick:1, eat:1, sleep:3}
+var monkey = {name: "Bonzo", animation: "monkey_0.png", background: "background/jungle.png", button: "#0e2e10", feed: "#f4501e", play: "#ff8965",default:3, play:3, sick:3, eat:3, sleep:3}
+var turtle = {name: "Chad", animation: "turtle_0.png", background: "background/beach.png",button: "#084252", feed: "#2e7d32", play: "#66bb6a",default:1, play:1, sick:1, eat:3, sleep:3}
+var fox = {name: "Fiona", animation: "fox_0.png", background: "background/snow.png", button: "#4a332c", feed: "#691111", play: " #b71c1c",default:3, play:6, sick:1, eat:3, sleep:3}
+var seal = {name: "Blubb", animation: "seal_0.png",  background: "background/ice.png", button: "#35566b", feed: "#d32f2f", play: "#e57373",default:1, play:3, sick:1, eat:1, sleep:3}
+var bat = {name: "Shade", animation: "bat_0.png", background: "background/cave.png",  button: "#161a1f", feed: "#388e3d", play: "#81c784",default:1, play:5, sick:1,  eat:1, sleep:3}
 
 var possiblePets = [panda, beaver, fox, bat, dragon, turtle, seal, penguin, otter, monkey];
 
 //the amount of food the user has
+
 // let totalSteps = today.adjusted.steps
 
 //initial set up
@@ -79,6 +82,7 @@ function initialSetUp(){
   //fs.unlinkSync("json.txt");
   //receives save data if it exists, otherwise uses defaults
   var json_object = loadData({"hunger": 0, "happy": 10, "food": 0, "steps": 0, "lastLogin": date, "pet": createPet(), "lastHour": hour});
+
   
   
   //assign save data to variables
@@ -153,6 +157,7 @@ function displayPet(pet){
   var sickImage = document.getElementById('sickImage');
   var sleepImage = document.getElementById('sleepImage');
   var background = document.getElementById("background")
+
   
   var name = document.getElementById('petName');
   var defaultTime = document.getElementById('anim1');
@@ -170,6 +175,14 @@ function displayPet(pet){
   
   name.text = pet.name
   
+  console.log(pet.button)
+  feed.style.fill = pet.button;
+  play.style.fill = pet.button;
+
+  hungerMeter.style.fill = pet.feed
+  happyMeter.style.fill = pet.play
+    name.text = pet.name
+
   defaultTime.to = pet.default
   playTime.to = pet.play
   sickTime.to = pet.sick
@@ -238,6 +251,7 @@ function decrementHappy(){
   }
 
   saveData(hunger, happy, food, totalSteps, date, pet, hour);
+
 }
 
 //increments the happiness meter
@@ -252,7 +266,7 @@ function incrementHappy(){
     calculateHappyMeter(happy);
   }
   saveData(hunger, happy, food, totalSteps, date, pet, hour);
-}
+
 
 //decrements the hunger meter
 function decrementHunger(){
@@ -266,6 +280,7 @@ function decrementHunger(){
       calculateHungerMeter(hunger);
     }
   saveData(hunger, happy, food, totalSteps, date, pet, hour);
+
 }
 
 //increments the hunger meter
@@ -280,6 +295,7 @@ function incrementHunger(){
     calculateHungerMeter(hunger);
   }
   saveData(hunger, happy, food, totalSteps, date, pet, hour);
+
 }
 
 //switches to play animation on play button click and increments happiness meter
@@ -322,7 +338,7 @@ feed.addEventListener("click", (evt) => {
 
 //save data
 function saveData(hunger, happy, food, steps, date, pet, lastHour){
-  let json_data = {
+    let json_data = {
     "hunger": hunger,
     "happy": happy,
     "food": food,

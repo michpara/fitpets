@@ -50,12 +50,15 @@ var food;
 
 //the users last login date
 var lastLogin;
+var lastHour;
+
 
 //references feed and play buttons
 const feed = document.getElementById("feed");
 const play = document.getElementById("play");
 
 //pet objects
+
 var penguin = {name: "Skipp", animation: "penguin_0.png", background: "background/ice.png", button: "#35566b", feed: "#d32f2f", play: "#e57373", default:1, play:1, sick:1, eat:1, sleep:3}
 var otter = {name: "Oscar", animation: "otter_0.png",background: "background/water.png", button: "#bbdefb", feed: "#1a237e", play: "#3f51b5",default:3, play:3, sick:3, eat:3, sleep:3}
 var panda = {name: "Mochi", animation: "panda_0.png", background: "background/bamboo.png", button: "#32521c", feed: "#e53835", play: "#ef5250",default:3, play:1, sick:1, eat:1, sleep:3}
@@ -71,16 +74,15 @@ var possiblePets = [panda, beaver, fox, bat, dragon, turtle, seal, penguin, otte
 
 //the amount of food the user has
 
-
-
 // let totalSteps = today.adjusted.steps
 
 //initial set up
 function initialSetUp(){
-fs.unlinkSync("json.txt");
-
+  
+  //fs.unlinkSync("json.txt");
   //receives save data if it exists, otherwise uses defaults
-  var json_object = loadData({"hunger": 0, "happy": 10, "food": 0, "steps": 0, "lastLogin": date, "pet": createPet()});
+  var json_object = loadData({"hunger": 0, "happy": 10, "food": 0, "steps": 0, "lastLogin": date, "pet": createPet(), "lastHour": hour});
+
   
   
   //assign save data to variables
@@ -119,8 +121,21 @@ fs.unlinkSync("json.txt");
     switchTo(defaultAnimation) //otherwise, play default animation
   }
   increaseFood(); //calculate how much food the user has
+  
+  
+  var timeDur = hour - json_object.lastHour;
+  if(timeDur != 0){
+    for(var i = 0;i<timeDur;i++){
+      incrementHunger()
+      decrementHappy()
+   }
+  }
+   saveData(hunger, happy, food, totalSteps, date, pet, hour);
+  }
 
-}
+
+
+
 
 //creates a new random pet
 function createPet(){
@@ -142,8 +157,7 @@ function displayPet(pet){
   var sickImage = document.getElementById('sickImage');
   var sleepImage = document.getElementById('sleepImage');
   var background = document.getElementById("background")
-   
-  
+
   
   var name = document.getElementById('petName');
   var defaultTime = document.getElementById('anim1');
@@ -158,6 +172,9 @@ function displayPet(pet){
   eatImage.href = "eat/eat_" + pet.animation
   sleepImage.href = "sleep/sleep_" + pet.animation
   background.href = pet.background
+  
+  name.text = pet.name
+  
   console.log(pet.button)
   feed.style.fill = pet.button;
   play.style.fill = pet.button;
@@ -233,7 +250,8 @@ function decrementHappy(){
     calculateHappyMeter(happy);
   }
 
-  saveData(hunger, happy, food, totalSteps, date, pet);
+  saveData(hunger, happy, food, totalSteps, date, pet, hour);
+
 }
 
 //increments the happiness meter
@@ -247,8 +265,8 @@ function incrementHappy(){
     happy = happy + 1;
     calculateHappyMeter(happy);
   }
-  saveData(hunger, happy, food, totalSteps, date, pet);
-}
+  saveData(hunger, happy, food, totalSteps, date, pet, hour);
+
 
 //decrements the hunger meter
 function decrementHunger(){
@@ -261,7 +279,8 @@ function decrementHunger(){
       hunger = hunger - 1;
       calculateHungerMeter(hunger);
     }
-  saveData(hunger, happy, food, totalSteps, date, pet);
+  saveData(hunger, happy, food, totalSteps, date, pet, hour);
+
 }
 
 //increments the hunger meter
@@ -275,7 +294,8 @@ function incrementHunger(){
     hunger = hunger + 1;
     calculateHungerMeter(hunger);
   }
-  saveData(hunger, happy, food, totalSteps, date, pet);
+  saveData(hunger, happy, food, totalSteps, date, pet, hour);
+
 }
 
 //switches to play animation on play button click and increments happiness meter
@@ -313,18 +333,19 @@ feed.addEventListener("click", (evt) => {
       switchTo(defaultAnimation)
     }, 4000);
   }
-  saveData(hunger, happy, food, totalSteps, date, pet);
+  saveData(hunger, happy, food, totalSteps, date, pet, hour);
 });
 
 //save data
-function saveData(hunger, happy, food, steps, date, pet){
-  let json_data = {
+function saveData(hunger, happy, food, steps, date, pet, lastHour){
+    let json_data = {
     "hunger": hunger,
     "happy": happy,
     "food": food,
     "steps": steps,
     "lastLogin": date,
-    "pet":pet 
+    "pet":pet,
+    "lastHour": lastHour
   };
   fs.writeFileSync("json.txt", json_data, "json");
 }
@@ -343,6 +364,6 @@ function loadData(defaults){
 initialSetUp()
 
 //for testing purposes
-setInterval(incrementHunger, 10000)
+//setInterval(incrementHunger, 10000)
 
-setInterval(decrementHappy, 20000)
+//setInterval(decrementHappy, 20000)

@@ -1,4 +1,4 @@
-# FitPets 1.0.0 (uOttaHack 2021)
+# FitPets (uOttaHack 2021)
 
 ## Elevator Pitch
 With the pandemic keeping us at home, exercise is extremely important for both our physical and mental health. With the help of our FitPets, you'll have a portable pet cheering you on everyday!

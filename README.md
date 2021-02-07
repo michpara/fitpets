@@ -46,45 +46,55 @@ https://www.youtube.com/watch?v=DbLKIyLVrsU
 ## Meet the pets!
 
 ### Mochi
+<span>
 <img src="gifs/Default/mochi.gif" width="40%">
 <img src="screenshots/panda.png" width="40%">
-
+</span>
 ### Maple
+<span>
 <img src="gifs/Default/maple.gif" width="40%">
 <img src="screenshots/beaver.png" width="40%">
-
+</span>
 ### Drago
+<span>
 <img src="gifs/Default/drago.gif" width="40%">
 <img src="screenshots/drago.png" width="40%">
-
+</span>
 ### Oscar
+<span>
 <img src="gifs/Default/otto.gif" width="40%">
 <img src="screenshots/otter.png" width="40%">
-
+</span>
 ### Skipp
+<span>
 <img src="gifs/Default/skipp.gif" width="40%">
 <img src="screenshots/penguin.png" width="40%">
-
+</span>
 ### Chad
+<span>
 <img src="gifs/Default/turtle.gif" width="40%">
 <img src="screenshots/turtle.png" width="40%">
-
+</span>
 ### Fiona
+<span>
 <img src="gifs/Default/fiona.gif" width="40%">
 <img src="screenshots/fiona.png" width="40%">
-
+</span>
 ### Blubb
+<span>
 <img src="gifs/Default/seal.gif" width="40%">
 <img src="screenshots/blubb.png" width="40%">
-
+</span>
 ### Shade
+<span>
 <img src="gifs/Default/shade.gif" width="40%">
 <img src="screenshots/bat.png" width="40%">
-
+</span>
 ### Bonzo
+<span>
 <img src="gifs/Default/bonzo.gif" width="40%">
 <img src="screenshots/bonzo.png" width="40%">
-
+</span>
 # Pet Animations (we used Fiona for this example)
 ### Default
 <img src="screenshots/fiona.png" width="40%">

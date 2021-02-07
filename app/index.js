@@ -31,11 +31,9 @@ const maxWidth = device.screen.width * 0.4;
 
 //references happy meter
 var happyMeter = document.getElementById('happyMeter');
-var happyEmpty = document.getElementById("happyEmpty");
 
 //references hunger meter
 var hungerMeter = document.getElementById("hungerMeter");
-var hungerEmpty = document.getElementById("hungerEmpty");
 
 //stores the total steps the user took for the day
 let totalSteps = 2000;
@@ -44,7 +42,7 @@ let totalSteps = 2000;
 //holds the current date and time
 var today = new Date();
 var date = today.getDate();
-var hour = today.getHours();
+var hour = 12;
 
 //references feed and play buttons
 const feed = document.getElementById("feed");
@@ -57,9 +55,9 @@ var otter = {name: "Oscar", animation: "otter_0.png", background: "background/wa
 
 var panda = {name: "Mochi", animation: "panda_0.png", background: "background/bamboo.png", button: "#32521c", feed_button: "#e53835", play_button: "#ef5250", default: 3, play: 1, sick: 1, eat: 1, sleep: 3};
 
-var beaver = {name: "Maple", animation: "beaver_0.png", background: "background/snow.png", button: "#4a332c", feed_button: "#691111", play_button: "#b71c1c", default: 1, play: 1, sick: 1, eat: 1, sleep: 3};
+var beaver = {name: "Maple", animation: "beaver_0.png", background: "background/snow.png", button: "#4a332c", feed_button: "#691111", play_button: " #b71c1c", default: 1, play: 1, sick: 1, eat: 1, sleep: 3};
 
-var dragon = {name: "Drago",  animation: "dragon_0.png", background: "background/cave_purple.png", button: "#9177c7", feed_button: "#d400f9", play_button: "#e980fc", default: 1, play: 1, sick: 1, eat: 1, sleep: 3};
+var dragon = {name: "Drago",  animation: "dragon_0.png", background: "background/cave_purple.png", button: "#1e1a26", feed_button: "#d400f9", play_button: "#e980fc", default: 1, play: 1, sick: 1, eat: 1, sleep: 3};
 
 var monkey = {name: "Bonzo", animation: "monkey_0.png", background: "background/jungle.png", button: "#0e2e10", feed_button: "#f4501e", play_button: "#ff8965", default: 3, play: 3, sick: 3, eat: 3, sleep: 3};
 
@@ -69,7 +67,7 @@ var fox = {name: "Fiona", animation: "fox_0.png", background: "background/snow.p
 
 var seal = {name: "Blubb", animation: "seal_0.png",  background: "background/ice.png", button: "#35566b", feed_button: "#d32f2f", play_button: "#e57373", default: 1, play: 3, sick: 1, eat: 1, sleep: 3};
 
-var bat = {name: "Shade", animation: "bat_0.png", background: "background/cave.png",  button: "#768fab", feed_button: "#388e3d", play_button: "#81c784", default: 1, play: 5, sick: 1, eat: 1, sleep: 3};
+var bat = {name: "Shade", animation: "bat_0.png", background: "background/cave.png",  button: "#161a1f", feed_button: "#388e3d", play_button: "#81c784", default: 1, play: 5, sick: 1, eat: 1, sleep: 3};
 
 //array of pet objects, used for random selection
 var possiblePets = [panda, beaver, fox, bat, dragon, turtle, seal, penguin, otter, monkey];
@@ -77,7 +75,7 @@ var possiblePets = [panda, beaver, fox, bat, dragon, turtle, seal, penguin, otte
 //function is called everytime the app is loaded
 function initialSetUp(){
   
- //fs.unlinkSync("json.txt");
+  //fs.unlinkSync("json.txt");
   
   //receives save data if it exists, otherwise uses defaults
   var json_object = loadData({"hunger": 0, "happy": 10, "food": 0, "steps": 0, "lastLogin": date, "pet": createPet(), "lastHour": hour});
@@ -90,6 +88,11 @@ function initialSetUp(){
   lastLogin = json_object.lastLogin;
   pet = json_object.pet;
   lastHour = json_object.lastHour;
+  console.log(lastHour)
+  console.log(hour)
+  if(lastHour >= 0 && lastHour < 8 && hour >= 8 && hour <= 23){
+    lastHour = 8;
+  }
   
   //display the pet
   displayPet(pet);
@@ -109,7 +112,7 @@ function initialSetUp(){
   //if the user opens the app between 11pm and 7am, play sleep animation
       console.log(hour)
 
-  if(hour >23 && hour < 8){
+  if(hour >= 0 && hour < 8){
     switchTo(sleepAnimation); 
   }else if(hunger == 10 || happy == 0){ //if the user opens the app and the hunger/happy meters are empty, play sick animation
     switchTo(sickAnimation);
@@ -129,7 +132,6 @@ function initialSetUp(){
   increaseFood(); //calculate how much food the user has
   
   saveData(hunger, happy, food, totalSteps, date, pet, hour);
-
 
 }
 
@@ -180,9 +182,7 @@ function displayPet(pet){
   play.style.fill = pet.button;
   hungerMeter.style.fill = pet.feed_button;
   happyMeter.style.fill = pet.play_button;
-  hungerEmpty.style.fill = pet.feed_button;
-  happyEmpty.style.fill = pet.play_button;
- 
+  
   //sets the animation start/end lengths for the selected pet
   defaultTime.to = pet.default;
   playTime.to = pet.play;
@@ -297,7 +297,6 @@ function incrementHunger(){
 play.addEventListener("click", (evt) => {
   //make sure play button is disabled if pet is sleeping
   if(hour <= 23 && hour >=8){
-
     switchTo(playAnimation);
     incrementHappy();
     if(hunger == 10){
@@ -316,8 +315,7 @@ play.addEventListener("click", (evt) => {
 //switches to feed animation on feed button click and increments hunger meter
 feed.addEventListener("click", (evt) => {
    //make sure feed button is disabled if the pet is sleeping
-   if(hour <= 23 && hour >=8){
-
+   if(hour <=23 && hour >=8){
      //make sure feed button is disabled if food is empty or hunger is empty
      if(food > 0 && hunger > 0){
         decrementHunger();
@@ -367,5 +365,4 @@ function loadData(defaults){
 }
 
 initialSetUp()
-
 

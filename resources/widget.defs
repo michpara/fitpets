@@ -8,7 +8,7 @@
       <animate id="anim1" attributeName="value" begin="enable"
           from="0" to="1" dur="0.4"
           repeatDur="0.8" repeatCount="indefinite" />
-      <image id="defaultImage" href=" " width="150" height="150" x="25%" y="20%"/>
+      <image id="defaultImage" href="" width="150" height="150" x="25%" y="20%"/>
     </symbol>
     
     <symbol id="frames_play" href="#sprite-image" fill="black">
@@ -29,14 +29,15 @@
       <animate id="anim4" attributeName="value" begin="enable"
           from="0" to="1" dur="0.4"
           repeatDur="0.8" repeatCount="5" />
-      <image id="eatImage" href=" " width="150" height="150" x="25%" y="20%"/>
+      <image id="eatImage" href="" width="150" height="150" x="25%" y="20%"/>
     </symbol>
     
     <symbol id="frames_sleep" href="#sprite-image" fill="black">
       <animate id="anim5" attributeName="value" begin="enable"
           from="0" to="3" dur="3"
           repeatDur="4" repeatCount="indefinite" />
-      <image id="sleepImage" href=" " width="150" height="150" x="25%" y="20%"/>
+      <image id="sleepImage" href="" width="150" height="150" x="25%" y="20%"/>
     </symbol>
+    
   </defs>
 </svg>

@@ -1,18 +1,19 @@
 <svg>
+
+     <image id="background" height="100%" width="100%" />
+
   <text id="petName" fill="white" font-family="System-Light" x="11%" y="15%" ></text>
     
   <rect x="40%" y="7%" width="40%" height="3%" fill="red" opacity="0.3" />
   <rect x="40%" y="13%" width="40%" height="3%" fill="green" opacity="0.3"/>
   <rect id="hungerMeter" x="40%" y="7%" height="3%" fill="red" />
   <rect id="happyMeter" x="40%" y="13%" height="3%" fill="green" />
- 
-  
+
   <use id="defaultAnimation" href="#frames"/>
   <use id="playAnimation" href="#frames_play" />
   <use id="eatAnimation" href="#frames_eat"/>
   <use id="sickAnimation" href="#frames_sick" />
   <use id="sleepAnimation" href="#frames_sleep" />
-  
   <use id="feed" href="#text-button" class="text-button bottom left secondary application-fill" />
   <use id="play" href="#text-button" class="text-button bottom right application-fill" />
 </svg>

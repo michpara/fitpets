@@ -1,7 +1,10 @@
 # FitBit Virtual Pet (uOttaHack 2021)
 
 ## Elevator Pitch
-TBD
+With COVID-19 keeping us at home, exercise is important not only for our physical health, but for our mental health as well.
+Despite this, it can still be extremely difficult to find the motivation to get up and move.
+However, with FitBit Virtual Pet, each little animal is cheering you on to reach your goals.
+
 
 ## About the project
 Visit and take care of one of ten virtual pets as they help you reach your daily goals.

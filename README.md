@@ -52,10 +52,10 @@ TBD
 <img src="gifs/Default/maple.gif" width="40%">
 
 ### Drago
-![](gifs/Default/drago.gif)
+<img src="gifs/Default/drago.gif" width="40%">
 
 ### Oscar
-![](gifs/Default/otto.gif)
+<img src="gifs/Default/otto.gif" width="40%">
 
 ### Skipp
 ![](gifs/Default/seal.gif)

@@ -14,8 +14,6 @@ clock.granularity = "hours";
 const deviceWidth = device.screen.width;
 const deviceHeight = device.screen.height;
 
-//sets clock tick event to every hour
-clock.granularity = "hours";
 
 //store how many steps the user took since they last opened the app
 var currentSteps;
@@ -46,16 +44,16 @@ var hunger;
 const feed = document.getElementById("feed");
 const play = document.getElementById("play");
 
-var penguin = {name: "Skipp", age:0, animation: "penguin_0.png", time:1, time2:1, time3:1, time4:1, time5:3}
-var otter = {name: "Oscar", age:0, animation: "otter_0.png", time:3, time2:3, time3:3, time4:3, time5:3}
-var panda = {name: "Mochi", age:0, animation: "panda_0.png", time:3, time2:1, time3:1, time4:1, time5:3}
-var beaver = {name: "Maple", age:0, animation: "beaver_0.png", time:1, time2:1, time3:1, time4:1, time5:3}
-var dragon = {name: "Drago", age:0, animation: "dragon_0.png", time:1, time2:1, time3:1, time4:1, time5:3}
-var monkey = {name: "Bonzo", age:0, animation: "monkey_0.png", time:3, time2:3, time3:3, time4:3, time5:3}
+var penguin = {name: "Skipp", age:0, animation: "penguin_0.png", background: "background/ice.png",  time:1, time2:1, time3:1, time4:1, time5:3}
+var otter = {name: "Oscar", age:0, animation: "otter_0.png",time:3, time2:3, time3:3, time4:3, time5:3}
+var panda = {name: "Mochi", age:0, animation: "panda_0.png", background: "background/bamboo.png", time:3, time2:1, time3:1, time4:1, time5:3}
+var beaver = {name: "Maple", age:0, animation: "beaver_0.png",background: "background/snow.png", time:1, time2:1, time3:1, time4:1, time5:3}
+var dragon = {name: "Drago", age:0, animation: "dragon_0.png", background: "background/cave_purple.png", time:1, time2:1, time3:1, time4:1, time5:3}
+var monkey = {name: "Bonzo", age:0, animation: "monkey_0.png", background: "background/jungle.png", time:3, time2:3, time3:3, time4:3, time5:3}
 var turtle = {name: "Chad", age:0, animation: "turtle_0.png", time:1, time2:1, time3:1, time4:3, time5:3}
-var fox = {name: "Fiona", age:0, animation: "fox_0.png", time:3, time2:6, time3:1, time4:3, time5:3}
-var seal = {name: "Blubb", age:0, animation: "seal_0.png", time:1, time2:3, time3:1, time4:1, time5:3}
-var bat = {name: "Shade", age:0, animation: "bat_0.png", time:1, time2:5, time3:1,  time4:1, time5:3}
+var fox = {name: "Fiona", age:0, animation: "fox_0.png", background: "background/snow.png", time:3, time2:6, time3:1, time4:3, time5:3}
+var seal = {name: "Blubb", age:0, animation: "seal_0.png", background: "background/ice.png", time:1, time2:3, time3:1, time4:1, time5:3}
+var bat = {name: "Shade", age:0, animation: "bat_0.png", background: "background/cave.png", time:1, time2:5, time3:1,  time4:1, time5:3}
 
 var possiblePets = [panda,beaver,fox,bat,dragon,turtle,seal,penguin,otter,monkey];
 
@@ -77,6 +75,7 @@ function createPet(){
   let eatImage = document.getElementById('eatImage');
   let sickImage = document.getElementById('sickImage');
   let sleepImage = document.getElementById('sleepImage');
+  let background = document.getElementById("background")
   
   let name = document.getElementById('petName');
   let defaultTime = document.getElementById('anim1');
@@ -84,12 +83,14 @@ function createPet(){
   let sickTime = document.getElementById('anim3');
   let eatTime = document.getElementById('anim4');
   let sleepTime = document.getElementById('anim5');
+ 
   
   defaultImage.href = "default/" + pet.animation
   playImage.href = "play/play_" + pet.animation
   sickImage.href = "sick/sick_" + pet.animation
   eatImage.href = "eat/eat_" + pet.animation
   sleepImage.href = "sleep/sleep_" + pet.animation
+  background.href = pet.background
   
   name.text = pet.name
   
@@ -107,13 +108,11 @@ var food;
 var lastLogin;
 
 //total steps the user took today
-let totalSteps = 4000; //placeholder for testing 
+let totalSteps = 10000; //placeholder for testing 
 // let totalSteps = today.adjusted.steps
 
 //initial set up
 function initialSetUp(){
-  
-fs.unlinkSync("json.txt")
 
   createPet() //only call this is no json.txt file
   //get the current hour

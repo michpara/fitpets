@@ -85,8 +85,21 @@ TBD
 <img src="gifs/Default/bonzo.gif" width="40%">
 <img src="screenshots/bonzo.png" width="40%">
 
-# App Screenshots (we used Fiona for these screenshots)
+# Pet Animations (we used Fiona for this example)
+### Default
+<img src="screenshots/fiona.png" width="40%">
 
+### Sleep
+<img src="screenshots/fiona_sleep.png" width="40%">
+
+### Sick
+<img src="screenshots/fiona_sick.png" width="40%">
+
+### Play
+<img src="screenshots/fiona_play.png" width="40%">
+
+### Eat
+<img src="screenshots/fiona_eat.png" width="40%">
 
 ## Developers
 Michelle Paradis, Rishaad Quaiser, Sydney Morrow

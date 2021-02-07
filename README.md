@@ -46,7 +46,8 @@ TBD
 ## Meet the pets!
 
 ### Mochi
-![](gifs/Default/mochi.gif){:height="50%" width="50%"}
+![](gifs/Default/mochi.gif)
+<img src="gifs/Default/mochi.gif" width="40%">.
 
 ### Maple
 ![](gifs/Default/maple.gif)

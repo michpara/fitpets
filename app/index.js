@@ -140,7 +140,7 @@ fs.unlinkSync("json.txt")
 
   
   //if the user opens the app between 11pm and 7am, play sleep animation
-  if(hour >= 23 && hour < 7){
+  if(hour < 23 && hour >= 7){
     //TODO: IF BETWEEN 11PM AND 7PM WHEN USER ON APP, PLAY SLEEP ANIMATION
     switchTo(sleepAnimation); //DISABLE FEED AND PLAY
     
@@ -242,6 +242,7 @@ function decrementHunger(){
 
 //increments the hunger meter
 function incrementHunger(){
+  
   if(hunger == 9){
     setTimeout(function() {
       switchTo(sickAnimation);
@@ -256,7 +257,11 @@ function incrementHunger(){
 
 //switches to play animation on play button click and increments happiness meter
 play.addEventListener("click", (evt) => {
-
+  if(hour < 23 && hour >= 7)
+  {
+    return;    
+  }
+  else{
   switchTo(playAnimation);
   incrementHappy();
   if(hunger == 10){
@@ -268,14 +273,25 @@ play.addEventListener("click", (evt) => {
       switchTo(defaultAnimation);
     }, 4000);
   }
+  }
 });
 
 //switches to feed animation on feed button click and increments hunger meter
 feed.addEventListener("click", (evt) => {
+   if(hour < 23 && hour >= 7){
+    return;    
+   }
+   else{
    if(food > 0 && hunger > 0){
       decrementHunger();
-      switchTo(eatAnimation);
-      decreaseFood();
+      switchTo(eatAnimation)
+      setTimeout(function(){
+        switchTo(defaultAnimation)
+      }, 4000);
+     
+   
+     
+     
   if(happy == 0){
       setTimeout(function(){
         switchTo(sickAnimation)
@@ -287,6 +303,7 @@ feed.addEventListener("click", (evt) => {
     }, 4000);
   }
   saveData(hunger, happy, food, totalSteps, hour);
+  }
 });
 
 //save data

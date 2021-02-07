@@ -100,8 +100,6 @@ function createPet(){
   sleepTime.to = pet.time5
 }
 
-//initial set up
-function initialSetUp(){
 
 //the amount of food the user has
 var food;
@@ -115,12 +113,14 @@ let totalSteps = 4000; //placeholder for testing
 //initial set up
 function initialSetUp(){
   
+fs.unlinkSync("json.txt")
+
   createPet() //only call this is no json.txt file
   //get the current hour
 
   //load data if there's a save, use defaults if not
   var json_object = loadData({"hunger": 0, "happy": 10, "food": 0, "steps": 0, "lastLogin": hour});
-  
+
   //assign save data to variables
   hunger = json_object.hunger;
   happy = json_object.happy;
@@ -171,7 +171,7 @@ function decreaseFood(){
 
 }
 
-}
+
 
 //calculates the length of the hunger meter
 function calculateHungerMeter(hunger){
@@ -298,7 +298,7 @@ function saveData(hunger, happy, food, steps, hour){
     "steps": steps,
     "lastLogin": hour
   };
-
+  console.log("hunger" + hunger)
   fs.writeFileSync("json.txt", json_data, "json");
 }
 
@@ -310,8 +310,8 @@ function loadData(defaults){
     let json_object = defaults
     fs.writeFileSync("json.txt", json_object, "json");
   }
-
-
+  return json_object
+}
 
 initialSetUp()
 

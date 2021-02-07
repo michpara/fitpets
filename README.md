@@ -67,16 +67,13 @@ TBD
 <img src="gifs/Default/fiona.gif" width="40%">
 
 ### Blubb
-<img src="gifs/Default/blubb.gif" width="40%">
+<img src="gifs/Default/seal.gif" width="40%">
 
 ### Shade
 <img src="gifs/Default/shade.gif" width="40%">
 
 ### Bonzo
 <img src="gifs/Default/bonzo.gif" width="40%">
-
-
-
 
 ## Developers
 Michelle Paradis, Rishaad Quaiser, Sydney Morrow

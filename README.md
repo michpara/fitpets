@@ -1,4 +1,4 @@
-# FitPets (uOttaHack 2021)
+# FitPets 1.0.0 (uOttaHack 2021)
 
 ## Elevator Pitch
 With the pandemic keeping us at home, exercise is extremely important for both our physical and mental health. With the help of our FitPets, you'll have a portable pet cheering you on everyday!
@@ -39,7 +39,6 @@ To download on computer:
 5. Download GitHub project.
 6. Drag and drop projects contents into your Fitbit Studio project. (Make sure the entire project is not contained in a folder. Each folder should be entered separately.)
 7. Connect your Fitbit OS Simulator and then run.
-
 
 ## Project Demo
 https://www.youtube.com/watch?v=DbLKIyLVrsU

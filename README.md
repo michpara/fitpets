@@ -47,33 +47,43 @@ TBD
 
 ### Mochi
 <img src="gifs/Default/mochi.gif" width="40%">
+<img src="screenshots/panda.png" width="40%">
 
 ### Maple
 <img src="gifs/Default/maple.gif" width="40%">
+<img src="screenshots/beaver.png" width="40%">
 
 ### Drago
 <img src="gifs/Default/drago.gif" width="40%">
+<img src="screenshots/drago.png" width="40%">
 
 ### Oscar
 <img src="gifs/Default/otto.gif" width="40%">
+<img src="screenshots/otter.png" width="40%">
 
 ### Skipp
 <img src="gifs/Default/skipp.gif" width="40%">
+<img src="screenshots/penguin.png" width="40%">
 
 ### Chad
 <img src="gifs/Default/turtle.gif" width="40%">
+<img src="screenshots/turtle.png" width="40%">
 
 ### Fiona
 <img src="gifs/Default/fiona.gif" width="40%">
+<img src="screenshots/fiona.png" width="40%">
 
 ### Blubb
 <img src="gifs/Default/seal.gif" width="40%">
+<img src="screenshots/blubb.png" width="40%">
 
 ### Shade
 <img src="gifs/Default/shade.gif" width="40%">
+<img src="screenshots/bat.png" width="40%">
 
 ### Bonzo
 <img src="gifs/Default/bonzo.gif" width="40%">
+<img src="screenshots/bonzo.png" width="40%">
 
 # App Screenshots (we used Fiona for these screenshots)
 

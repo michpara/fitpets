@@ -75,6 +75,9 @@ TBD
 ### Bonzo
 <img src="gifs/Default/bonzo.gif" width="40%">
 
+# App Screenshots (we used Fiona for these screenshots)
+
+
 ## Developers
 Michelle Paradis, Rishaad Quaiser, Sydney Morrow
 

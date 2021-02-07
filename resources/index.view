@@ -2,10 +2,11 @@
 
      <image id="background" height="100%" width="100%" />
 
-  <text id="petName" fill="white" font-family="System-Light" x="11%" y="15%" ></text>
+
+  <text id="petName" fill="black" font-family="System-Bold" x="11%" y="15%" ></text>
     
-  <rect x="40%" y="7%" width="40%" height="3%" fill="red" opacity="0.3" />
-  <rect x="40%" y="13%" width="40%" height="3%" fill="green" opacity="0.3"/>
+  <rect id="hungerEmpty" x="40%" y="7%" width="40%" height="3%" fill="red" opacity="0.3" />
+  <rect id="happyEmpty"  x="40%" y="13%" width="40%" height="3%" fill="green" opacity="0.3"/>
   <rect id="hungerMeter" x="40%" y="7%" height="3%" fill="red" />
   <rect id="happyMeter" x="40%" y="13%" height="3%" fill="green" />
 

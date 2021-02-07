@@ -14,21 +14,34 @@ Each day you will be visited by a new pet, take care of them by feeding and play
 We created the pixel art for all of the FitPets using Pixilart and Piskel. We created the functionality using FitBit Studio (SVG, CSS3, JavaScript).
 
 ### Challenges we ran into
-We came across various limitations with our seleted platform. Fitbit studio does not allow applications to run while the app is not open. To resolve this issue we kept track of the time the app was last opened by the user. In addition, Fitbit Studio offers a limited range of designs for buttons. Due to this, we had to alter our initial designs to work with the limitations.
+We came across various limitations with our selected platform. Fitbit Studio does not allow applications to run while the app is not open. To resolve this issue we kept track of the time since the app was last opened by the user. In addition, Fitbit Studio offers a limited range of designs for buttons. Due to this, we had to alter our initial designs to work with the limitations.
 
 ### Accomplishments that we're proud of
+We learned how to use Fitbit Studio within 36 hours wihtout any prior experience. Also, we are proud of the amazing work of our designer!
 
 ### What we learned
+We learned how to coordinate with a team and successfully divide tasks, and coordinate ideas with a team of developers and non-developers. We gained experience with methods used to thoroughly test code as well as merging code between different developers. In addition, we learned our way around Fitbit Studio, which helped us adapt to working fast-paced with a new environment.
+
 
 ### What's next for FitPet
 Features we would like to add in the future would be the ability to keep the food earned from your steps the previous day when the pet is changed at midnight. 
-We would like to add a currency system and the ability to select what type of food to purchase for your pet. Instead of earning food from your steps, you would earn currency. We would like for pets to be around for longer than a day as well as adding more pets to add variety to the application. Ideally in the future, the happiness meter would be filled up by reaching your daily goals, to encourage the users.
+We would like to add a currency system and the ability to select what type of food to purchase for your pet. Instead of earning food from your steps, you would earn currency. We would like for pets to be around for longer than a day as well as adding more pets to add variety to the application. Ideally in the future, the happiness meter would be filled up by reaching your daily goals, to motivate the users to reach their goals.
 
 ## Built with
 Fitbit Studio (SVG, CSS3, JavaScript), Pixilart, Piskel
 
 ## Try it out
-TBD
+To download on computer:
+1. Create an account on FitBit Studio using your Fitbit login.
+2. Open Fitbit Studio and crete a new project of type Empty Canvas.
+3. Select the simulator tab on the top and download FitBit OS Simulator.
+4. Open Fitbit OS Simulator and go to settings. Change device type to sense.
+5. Download GitHub project.
+6. Drag and drop project contents into your Fitbit Studio Project. (Make sure the entire project is not contained in a folder. Each folder sound be entered separatly.)
+7. Project should appear as follows:
+
+9. Connect your Fitbit OS Simulator and then run
+
 
 ## Project Demo
 TBD

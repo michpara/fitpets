@@ -10,7 +10,6 @@
   text-buffer: "PLAY"
 }
 
-#petName #text{
-  text-buffer: "PLAY"
-  
+#petName{
+  text-length: 8
 }

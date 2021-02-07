@@ -40,14 +40,17 @@ TBD
 ### Fiona
 ![](gifs/Default/fiona.gif)
 
-### Blub
+### Blubb
 ![](gifs/Default/blubb.gif)
 
-### Spike
+### Shade
 ![](gifs/Default/shade.gif)
 
 ### Bonzo
 ![](gifs/Default/bonzo.gif)
+
+
+
 
 ## Developers
 Michelle Paradis, Rishaad Quaiser, Sydney Morrow

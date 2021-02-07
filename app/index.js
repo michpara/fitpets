@@ -32,6 +32,8 @@ const maxWidth = device.screen.width * 0.4;
 //references meters
 var happyMeter = document.getElementById('happyMeter');
 var hungerMeter = document.getElementById("hungerMeter");
+var happyEmpty = document.getElementById("happyEmpty");
+var happyEmpty = document.getElementById("happyEmpty");
 
 //stores the total steps the user took for the day
 var totalSteps = today.adjusted.steps;
@@ -40,7 +42,7 @@ var totalSteps = today.adjusted.steps;
 
 var todaysDate = new Date();
 
-var date = todaysDate.getDate();
+var date = todaysDate.getDate()
 var hour = todaysDate.getHours();
 
 
@@ -55,9 +57,10 @@ var otter = {name: "Oscar", animation: "otter_0.png", background: "background/wa
 
 var panda = {name: "Mochi", animation: "panda_0.png", background: "background/bamboo.png", button: "#32521c", feed_button: "#e53835", play_button: "#ef5250", default: 3, play: 1, sick: 1, eat: 1, sleep: 3};
 
-var beaver = {name: "Maple", animation: "beaver_0.png", background: "background/snow.png", button: "#4a332c", feed_button: "#691111", play_button: " #b71c1c", default: 1, play: 1, sick: 1, eat: 1, sleep: 3};
+var beaver = {name: "Maple", animation: "beaver_0.png", background: "background/snow.png", button: "#4a332c", feed_button: "#691111", play_button: "#b71c1c", default: 1, play: 1, sick: 1, eat: 1, sleep: 3};
 
-var dragon = {name: "Drago",  animation: "dragon_0.png", background: "background/cave_purple.png", button: "#1e1a26", feed_button: "#d400f9", play_button: "#e980fc", default: 1, play: 1, sick: 1, eat: 1, sleep: 3};
+var dragon = {name: "Drago",  animation: "dragon_0.png", background: "background/cave_purple.png", button: "#9177c7", feed_button: "#d400f9", play_button: "#e980fc", default: 1, play: 1, sick: 1, eat: 1, sleep: 3};
+
 
 var monkey = {name: "Bonzo", animation: "monkey_0.png", background: "background/jungle.png", button: "#0e2e10", feed_button: "#f4501e", play_button: "#ff8965", default: 3, play: 3, sick: 3, eat: 3, sleep: 3};
 
@@ -67,7 +70,8 @@ var fox = {name: "Fiona", animation: "fox_0.png", background: "background/snow.p
 
 var seal = {name: "Blubb", animation: "seal_0.png",  background: "background/ice.png", button: "#35566b", feed_button: "#d32f2f", play_button: "#e57373", default: 1, play: 3, sick: 1, eat: 1, sleep: 3};
 
-var bat = {name: "Shade", animation: "bat_0.png", background: "background/cave.png",  button: "#161a1f", feed_button: "#388e3d", play_button: "#81c784", default: 1, play: 5, sick: 1, eat: 1, sleep: 3};
+var bat = {name: "Shade", animation: "bat_0.png", background: "background/cave.png",  button: "#768fab", feed_button: "#388e3d", play_button: "#81c784", default: 1, play: 5, sick: 1, eat: 1, sleep: 3};
+
 
 //array of pet objects, used for random selection
 var possiblePets = [panda, beaver, fox, bat, dragon, turtle, seal, penguin, otter, monkey];
@@ -161,6 +165,8 @@ function displayPet(pet){
   var eatTime = document.getElementById('anim4');
   var sleepTime = document.getElementById('anim5');
  
+  var hungerEmpty = document.getElementById("hungerEmpty");
+  var happyEmpty = document.getElementById('happyEmpty')
   //displays the animations for the selected pet 
   defaultImage.href = "default/" + pet.animation;
   playImage.href = "play/play_" + pet.animation;
@@ -177,6 +183,8 @@ function displayPet(pet){
   play.style.fill = pet.button;
   hungerMeter.style.fill = pet.feed_button;
   happyMeter.style.fill = pet.play_button;
+   hungerEmpty.style.fill = pet.feed_button;
+  happyEmpty.style.fill = pet.play_button;
   
   //sets the animation start/end lengths for the selected pet
   defaultTime.to = pet.default;

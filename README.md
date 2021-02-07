@@ -61,19 +61,19 @@ TBD
 <img src="gifs/Default/seal.gif" width="40%">
 
 ### Chad
-![](gifs/Default/turtle.gif)
+<img src="gifs/Default/turtle.gif" width="40%">
 
 ### Fiona
-![](gifs/Default/fiona.gif)
+<img src="gifs/Default/fiona.gif" width="40%">
 
 ### Blubb
-![](gifs/Default/blubb.gif)
+<img src="gifs/Default/blubb.gif" width="40%">
 
 ### Shade
-![](gifs/Default/shade.gif)
+<img src="gifs/Default/shade.gif" width="40%">
 
 ### Bonzo
-![](gifs/Default/monkey.gif)
+<img src="gifs/Default/monkey.gif" width="40%">
 
 
 

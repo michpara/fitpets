@@ -144,12 +144,16 @@ fs.unlinkSync("json.txt")
     //TODO: IF BETWEEN 11PM AND 7PM WHEN USER ON APP, PLAY SLEEP ANIMATION
     switchTo(sleepAnimation); //DISABLE FEED AND PLAY
     
-  }else if(hunger == 10 || happy == 0){ //if the user opens the app and the hunger/happy meters are empty, play sick animation
+  }
+  
+  else{ 
+  if(hunger == 10 || happy == 0){ //if the user opens the app and the hunger/happy meters are empty, play sick animation
     switchTo(sickAnimation);
   }else{
     switchTo(defaultAnimation) //otherwise, play default animation
   }
   increaseFood(); //calculate how much food the user has
+  }
 }
 
 //increases the amount of food the user has
@@ -200,11 +204,14 @@ function switchTo(animation){
 
 //decrements the happiness meter
 function decrementHappy(){
+ 
+  
   if(happy == 1){
     setTimeout(function() {
       switchTo(sickAnimation);
     }, 4000)
   }
+  
   if(happy > 0){
     happy = happy - 1;
     calculateHappyMeter(happy);
@@ -257,13 +264,10 @@ function incrementHunger(){
 
 //switches to play animation on play button click and increments happiness meter
 play.addEventListener("click", (evt) => {
-  if(hour < 23 && hour >= 7)
-  {
-    return;    
-  }
-  else{
-  switchTo(playAnimation);
+  if(hour >= 23 && hour < 7) {
   incrementHappy();
+  switchTo(playAnimation);
+    
   if(hunger == 10){
     setTimeout(function(){
       switchTo(sickAnimation);
@@ -274,11 +278,14 @@ play.addEventListener("click", (evt) => {
     }, 4000);
   }
   }
+  
+ 
+ 
 });
 
 //switches to feed animation on feed button click and increments hunger meter
 feed.addEventListener("click", (evt) => {
-   if(hour < 23 && hour >= 7){
+   if(hour >= 23 && hour < 7){
     return;    
    }
    else{
@@ -288,6 +295,7 @@ feed.addEventListener("click", (evt) => {
       setTimeout(function(){
         switchTo(defaultAnimation)
       }, 4000);
+   
      
    
      
@@ -297,12 +305,13 @@ feed.addEventListener("click", (evt) => {
         switchTo(sickAnimation)
       }, 4000);
   }
-  }else{
+  else{
     setTimeout(function(){
       switchTo(defaultAnimation)
     }, 4000);
   }
   saveData(hunger, happy, food, totalSteps, hour);
+  }
   }
 });
 
@@ -333,6 +342,6 @@ function loadData(defaults){
 initialSetUp()
 
 //for testing purposes
-setInterval(incrementHunger, 10000)
+setInterval(incrementHunger, 2000)
 
-setInterval(decrementHappy, 20000)
+setInterval(decrementHappy, 2000)

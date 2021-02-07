@@ -24,7 +24,7 @@ We learned how to coordinate with a team and successfully divide tasks, and coor
 
 ### What's next for FitPet
 Features we would like to add in the future would be the ability to keep the food earned from your steps the previous day when the pet is changed at midnight. 
-We would like to add a currency system and the ability to select what type of food to purchase for your pet. Instead of earning food from your steps, you would earn currency. We would like for pets to be around for longer than a day, as well as adding more pets to add variety to the application. Ideally in the future, the happiness meter would be filled up by reaching your daily goals in order to motivate the users to reach their goals.
+We would like to add a currency system and the ability to select what type of food to purchase for your pet. Instead of earning food from your steps, you would earn currency. We would like for pets to be around for longer than a day, as well as adding more pets to add variety to the application. Ideally in the future, the happiness meter would be filled up by reaching your daily goals in order to motivate the users to reach their goals. We would also like some animals to be more rare than others.
 
 ## Built with
 Fitbit Studio (SVG, CSS3, JavaScript), Pixilart, Piskel

@@ -38,5 +38,6 @@
           repeatDur="4" repeatCount="indefinite" />
       <image id="sleepImage" href="" width="150" height="150" x="25%" y="20%"/>
     </symbol>
+    
   </defs>
 </svg>

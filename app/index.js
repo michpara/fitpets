@@ -14,8 +14,7 @@ clock.granularity = "hours";
 const deviceWidth = device.screen.width;
 const deviceHeight = device.screen.height;
 
-//sets clock tick event to every hour
-clock.granularity = "hours";
+
 
 //store how many steps the user took since they last opened the app
 var currentSteps;
@@ -35,6 +34,7 @@ const maxWidth = device.screen.width * 0.4;
 var happyMeter = document.getElementById('happyMeter');
 var happy;
 
+
 let today = new Date();
 let hour = today.getHours();
   
@@ -46,16 +46,16 @@ var hunger;
 const feed = document.getElementById("feed");
 const play = document.getElementById("play");
 
-var penguin = {name: "Skipp", age:0, animation: "penguin_0.png", default:1, play:1, sick:1, eat:1, sleep:3}
+var penguin = {name: "Skipp", age:0, animation: "penguin_0.png", background: "background/ice.png",default:1, play:1, sick:1, eat:1, sleep:3}
 var otter = {name: "Oscar", age:0, animation: "otter_0.png", default:3, play:3, sick:3, eat:3, sleep:3}
-var panda = {name: "Mochi", age:0, animation: "panda_0.png", default:3, play:1, sick:1, eat:1, sleep:3}
-var beaver = {name: "Maple", age:0, animation: "beaver_0.png", default:1, play:1, sick:1, eat:1, sleep:3}
-var dragon = {name: "Drago", age:0, animation: "dragon_0.png", default:1, play:1, sick:1, eat:1, sleep:3}
-var monkey = {name: "Bonzo", age:0, animation: "monkey_0.png", default:3, play:3, sick:3, eat:3, sleep:3}
+var panda = {name: "Mochi", age:0, animation: "panda_0.png", background: "background/bamboo.png", default:3, play:1, sick:1, eat:1, sleep:3}
+var beaver = {name: "Maple", age:0, animation: "beaver_0.png", background: "background/snow.png", default:1, play:1, sick:1, eat:1, sleep:3}
+var dragon = {name: "Drago", age:0, animation: "dragon_0.png", background: "background/cave_purple.png", default:1, play:1, sick:1, eat:1, sleep:3}
+var monkey = {name: "Bonzo", age:0, animation: "monkey_0.png", background: "background/jungle.png", default:3, play:3, sick:3, eat:3, sleep:3}
 var turtle = {name: "Chad", age:0, animation: "turtle_0.png", default:1, play:1, sick:1, eat:3, sleep:3}
-var fox = {name: "Fiona", age:0, animation: "fox_0.png", default:3, play:6, sick:1, eat:3, sleep:3}
-var seal = {name: "Blubb", age:0, animation: "seal_0.png", default:1, play:3, sick:1, eat:1, sleep:3}
-var bat = {name: "Shade", age:0, animation: "bat_0.png", default:1, play:5, sick:1,  eat:1, sleep:3}
+var fox = {name: "Fiona", age:0, animation: "fox_0.png", background: "background/snow.png", default:3, play:6, sick:1, eat:3, sleep:3}
+var seal = {name: "Blubb", age:0, animation: "seal_0.png",  background: "background/ice.png", default:1, play:3, sick:1, eat:1, sleep:3}
+var bat = {name: "Shade", age:0, animation: "bat_0.png", background: "background/cave.png",  default:1, play:5, sick:1,  eat:1, sleep:3}
 
 var possiblePets = [panda,beaver,fox,bat,dragon,turtle,seal,penguin,otter,monkey];
 
@@ -77,6 +77,7 @@ function createPet(){
   let eatImage = document.getElementById('eatImage');
   let sickImage = document.getElementById('sickImage');
   let sleepImage = document.getElementById('sleepImage');
+  let background = document.getElementById("background")
   
   let name = document.getElementById('petName');
   let defaultTime = document.getElementById('anim1');
@@ -84,12 +85,14 @@ function createPet(){
   let sickTime = document.getElementById('anim3');
   let eatTime = document.getElementById('anim4');
   let sleepTime = document.getElementById('anim5');
+ 
   
   defaultImage.href = "default/" + pet.animation
   playImage.href = "play/play_" + pet.animation
   sickImage.href = "sick/sick_" + pet.animation
   eatImage.href = "eat/eat_" + pet.animation
   sleepImage.href = "sleep/sleep_" + pet.animation
+  background.href = pet.background
   
   name.text = pet.name
   
@@ -108,12 +111,30 @@ var lastLogin;
 
 //total steps the user took today
 let totalSteps = 4000; //placeholder for testing 
+
 // let totalSteps = today.adjusted.steps
 
 //initial set up
 function initialSetUp(){
+
+  createPet() //only call this is no json.txt file
+  //get the current hour
+
+  //load data if there's a save, use defaults if not
+  var json_object = loadData({"hunger": 0, "happy": 10, "food": 0, "steps": 0, "lastLogin": hour});
+
+  //assign save data to variables
+  hunger = json_object.hunger;
+  happy = json_object.happy;
+  food = json_object.food;
+  currentSteps = totalSteps - json_object.steps;
+  lastLogin = json_object.hour
   
-  fs.unlinkSync("json.txt");
+  var timeFrame = hour - lastLogin
+  //calculate and display the hunger and happy meters
+  calculateHungerMeter(hunger);
+  calculateHappyMeter(happy);
+  
   createPet() //only call this is no json.txt file
   //get the current hour
 
@@ -136,6 +157,7 @@ function initialSetUp(){
   calculateHungerMeter(hunger);
   calculateHappyMeter(happy);
   
+
   for(var i = 0; i<timeFrame; i++){
     decrementHappy()
     incrementHunger()
@@ -153,7 +175,7 @@ function initialSetUp(){
     switchTo(defaultAnimation) //otherwise, play default animation
   }
   increaseFood(); //calculate how much food the user has
-  console.log(food);
+
 }
 
 //increases the amount of food the user has
@@ -174,8 +196,32 @@ function decreaseFood(){
     feed.text = "FEED: " + food; //update the display
   }
 
+
 }
 
+//decrease the amount of food the user has
+function decreaseFood(){
+  //decrement food by 1
+  if(food > 0){     
+    food = food - 1;
+    feed.text = "FEED: " + food; //update the display
+  }
+
+}
+
+
+
+//calculates the length of the hunger meter
+function calculateHungerMeter(hunger){
+  var percentage = hunger/10;
+  hungerMeter.width = (maxWidth - (percentage*maxWidth));
+}
+
+//calculate the length of the happy meter
+function calculateHappyMeter(happy){
+  var percentage = (10-happy)/10;
+  happyMeter.width = (maxWidth - (percentage*maxWidth));
+}
 
 
 //calculates the length of the hunger meter
@@ -214,6 +260,7 @@ function decrementHappy(){
     happy = happy - 1;
     calculateHappyMeter(happy);
   }
+
   saveData(hunger, happy, food, totalSteps, hour);
 }
 
@@ -284,6 +331,7 @@ feed.addEventListener("click", (evt) => {
       setTimeout(function(){
       switchTo(defaultAnimation)
     }, 4000);
+
   if(happy == 0){
       setTimeout(function(){
         switchTo(sickAnimation)

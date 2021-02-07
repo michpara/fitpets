@@ -4,10 +4,12 @@
 TBD
 
 ## About the project
-TBD
+Visit and take care of one of ten virtual pets as they help you reach your daily goals.
+Each day you will be visited by a new pet, take care of them by feeding and playing and making sure their hunger and happiness meters are satisfied. To feed, achieve a certain amount of steps to get food for your pet and increase the hunger meter. Play with your pet by selecting the play button, which will increase the happiness mete. Be careful not to let your happiness or hunger meter get too low, or your pet will get sick! Remember, pets get tired too and are asleep from 11pm-7am!
+
 
 ## Built with
-TBD
+Fitbit Studio
 
 ## Try it out
 TBD
@@ -17,32 +19,35 @@ TBD
 
 ## Pets!
 
-### Bamboo
-![](gifs/panda.gif)
+### Mochi
+![](gifs/Default/mochi.gif)
 
 ### Maple
-![](gifs/beaver.gif)
+![](gifs/Default/maple.gif)
 
 ### Drago
-![](gifs/dragon.gif)
+![](gifs/Default/drago.gif)
 
 ### Oscar
-![](gifs/otter.gif)
+![](gifs/Default/otto.gif)
 
-### Skipper
-![](gifs/penguin.gif)
+### Skipp
+![](gifs/Default/seal.gif)
 
-### Shelldon
-![](gifs/turtle.gif)
+### Chad
+![](gifs/Default/turtle.gif)
 
 ### Fiona
-![](gifs/Fox.gif)
+![](gifs/Default/fiona.gif)
 
-### Blubby
-![](gifs/seal.gif)
+### Blub
+![](gifs/Default/blubb.gif)
 
 ### Spike
-![](gifs/bat.gif)
+![](gifs/Default/shade.gif)
+
+### Bonzo
+![](gifs/Default/bonzo.gif)
 
 ## Developers
 Michelle Paradis, Rishaad Quaiser, Sydney Morrow

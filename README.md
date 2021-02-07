@@ -73,7 +73,7 @@ TBD
 <img src="gifs/Default/shade.gif" width="40%">
 
 ### Bonzo
-<img src="gifs/Default/monkey.gif" width="40%">
+<img src="gifs/Default/bonzo.gif" width="40%">
 
 
 

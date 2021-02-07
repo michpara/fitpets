@@ -9,7 +9,7 @@ Each day you will be visited by a new pet, take care of them by feeding and play
 
 
 ## Built with
-Fitbit Studio
+Fitbit Studio (SVG, CSS3, JavaScript), Pixilart, Piskel
 
 ## Try it out
 TBD

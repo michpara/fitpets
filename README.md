@@ -1,7 +1,7 @@
-# FitBit Virtual Pet (uOttaHack 2021)
+# FitPets (uOttaHack 2021)
 
 ## Elevator Pitch
-TBD
+With the pandemic keeping us at home, exercise is extremely important for both our physical and mental health. With the help of our FitPets, you'll have a portable pet cheering you on everyday!
 
 ## About the project
 Visit and take care of one of ten virtual pets as they help you reach your daily goals.
@@ -17,7 +17,7 @@ TBD
 ## Project Demo
 TBD
 
-## Pets!
+## Meet the pets!
 
 ### Mochi
 ![](gifs/Default/mochi.gif)

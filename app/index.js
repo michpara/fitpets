@@ -37,9 +37,6 @@ var happyEmpty = document.getElementById("happyEmpty");
 var hungerMeter = document.getElementById("hungerMeter");
 var hungerEmpty = document.getElementById("hungerEmpty");
 
-
-
-
 //stores the total steps the user took for the day
 let totalSteps = 2000;
 //let totalSteps = today.adjusted.steps;
@@ -74,13 +71,13 @@ var seal = {name: "Blubb", animation: "seal_0.png",  background: "background/ice
 
 var bat = {name: "Shade", animation: "bat_0.png", background: "background/cave.png",  button: "#768fab", feed_button: "#388e3d", play_button: "#81c784", default: 1, play: 5, sick: 1, eat: 1, sleep: 3};
 
-//array of pet objects, used for random selectioSn
+//array of pet objects, used for random selection
 var possiblePets = [panda, beaver, fox, bat, dragon, turtle, seal, penguin, otter, monkey];
 
 //function is called everytime the app is loaded
 function initialSetUp(){
   
- fs.unlinkSync("json.txt");
+ //fs.unlinkSync("json.txt");
   
   //receives save data if it exists, otherwise uses defaults
   var json_object = loadData({"hunger": 0, "happy": 10, "food": 0, "steps": 0, "lastLogin": date, "pet": createPet(), "lastHour": hour});
@@ -112,7 +109,7 @@ function initialSetUp(){
   //if the user opens the app between 11pm and 7am, play sleep animation
       console.log(hour)
 
-  if(hour <=23 && hour < 8){
+  if(hour >23 && hour < 8){
     switchTo(sleepAnimation); 
   }else if(hunger == 10 || happy == 0){ //if the user opens the app and the hunger/happy meters are empty, play sick animation
     switchTo(sickAnimation);
@@ -132,7 +129,7 @@ function initialSetUp(){
   increaseFood(); //calculate how much food the user has
   
   saveData(hunger, happy, food, totalSteps, date, pet, hour);
-  console.log(hour)
+
 
 }
 
@@ -185,7 +182,7 @@ function displayPet(pet){
   happyMeter.style.fill = pet.play_button;
   hungerEmpty.style.fill = pet.feed_button;
   happyEmpty.style.fill = pet.play_button;
-  
+ 
   //sets the animation start/end lengths for the selected pet
   defaultTime.to = pet.default;
   playTime.to = pet.play;
@@ -300,6 +297,7 @@ function incrementHunger(){
 play.addEventListener("click", (evt) => {
   //make sure play button is disabled if pet is sleeping
   if(hour <= 23 && hour >=8){
+
     switchTo(playAnimation);
     incrementHappy();
     if(hunger == 10){
@@ -319,6 +317,7 @@ play.addEventListener("click", (evt) => {
 feed.addEventListener("click", (evt) => {
    //make sure feed button is disabled if the pet is sleeping
    if(hour <= 23 && hour >=8){
+
      //make sure feed button is disabled if food is empty or hunger is empty
      if(food > 0 && hunger > 0){
         decrementHunger();
@@ -369,7 +368,4 @@ function loadData(defaults){
 
 initialSetUp()
 
-//for testing purposes
-//setInterval(incrementHunger, 10000)
 
-//setInterval(decrementHappy, 20000)

@@ -49,7 +49,7 @@ TBD
 <img src="gifs/Default/mochi.gif" width="40%">
 
 ### Maple
-![](gifs/Default/maple.gif)
+<img src="gifs/Default/maple.gif" width="40%">
 
 ### Drago
 ![](gifs/Default/drago.gif)

@@ -37,7 +37,7 @@ To download on computer:
 3. Select the simulator tab on the top and download FitBit OS Simulator.
 4. Open Fitbit OS Simulator and go to settings. Change device type to sense.
 5. Download GitHub project.
-6. Drag and drop project contents into your Fitbit Studio Project. (Make sure the entire project is not contained in a folder. Each folder sound be entered separatly.)
+6. Drag and drop project contents into your Fitbit Studio Project. (Make sure the entire project is not contained in a folder. Each folder should be entered separatly.)
 7. Connect your Fitbit OS Simulator and then run
 
 
